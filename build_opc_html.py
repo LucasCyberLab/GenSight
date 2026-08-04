@@ -5,6 +5,8 @@ doc_dir = 'opc-doc'
 docs = {}
 
 doc_titles = {
+    "visual-portfolio-showcase.md": "🖼️ 视觉作品与 Demo 样板库 (Portfolio Showcase)",
+    "product-spec-and-pricing.md": "💎 交付物数量与标准报价单 (Product & Pricing)",
     "05-crossborder-opc-master-plan.md": "05. OPC 运营方案总纲 (Master Plan)",
     "01-resource-audit.md": "01. 资源盘点 (Resource Audit)",
     "02-niche-positioning.md": "02. 利基定位重塑 (Niche Positioning)",
@@ -12,13 +14,14 @@ doc_titles = {
     "04-business-model.md": "04. 精益商业模式 (Business Model)",
     "06-mvp-design.md": "06. MVP 验证设计 (MVP Design)",
     "07-conversion-loop.md": "07. 转化闭环 SOP (Conversion Loop)",
-    "product-spec-and-pricing.md": "💎 交付物数量与标准报价单 (Product & Pricing)",
     "learning-and-sop-roadmap.md": "🛠️ 7天学习计划与协同SOP (Learning & SOP)",
     "demo-case-blueprint.md": "💡 首个 Demo 样板案例思考 (Demo Strategy)",
     "README.md": "📚 OPC 文档库说明 (Overview)"
 }
 
 doc_categories = {
+    "visual-portfolio-showcase.md": "product",
+    "product-spec-and-pricing.md": "product",
     "05-crossborder-opc-master-plan.md": "master",
     "01-resource-audit.md": "foundation",
     "02-niche-positioning.md": "foundation",
@@ -26,7 +29,6 @@ doc_categories = {
     "04-business-model.md": "foundation",
     "06-mvp-design.md": "foundation",
     "07-conversion-loop.md": "foundation",
-    "product-spec-and-pricing.md": "product",
     "learning-and-sop-roadmap.md": "execution",
     "demo-case-blueprint.md": "execution",
     "README.md": "meta"
@@ -394,11 +396,21 @@ html_template = f"""<!DOCTYPE html>
       transition: background-color 0.3s, border-color 0.3s;
     }}
 
-    /* Markdown Styling */
+    /* Markdown Styling & Image Display */
     .markdown-body {{
       color: var(--text-main);
       font-size: 15px;
       line-height: 1.75;
+    }}
+
+    .markdown-body img {{
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin: 20px 0;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border-color);
+      display: block;
     }}
 
     .markdown-body h1 {{
@@ -808,7 +820,7 @@ html_template = f"""<!DOCTYPE html>
       <span class="logo-icon">🌈</span>
       <div class="title-text">
         GenSight · 5大跨境平台与独立站视觉素材代制作实验室
-        <span class="title-tag">精确交付物与标准报价系统</span>
+        <span class="title-tag">作品与报价系统</span>
       </div>
     </div>
 
@@ -838,9 +850,19 @@ html_template = f"""<!DOCTYPE html>
         <span>📖</span> 目录导航
       </div>
 
+      <div class="nav-section-title">🖼️ 视觉作品与 Demo 库</div>
+      <div class="nav-item" data-file="visual-portfolio-showcase.md" onclick="loadDoc('visual-portfolio-showcase.md')">
+        <span class="icon">🖼️</span> 5大平台与独立站 Demo 样板
+      </div>
+
       <div class="nav-section-title">⚡ 智能报价工具 (Price Calculator)</div>
       <div class="nav-item active" data-file="calculator" onclick="loadCalculator()">
         <span class="icon">🧮</span> 智能报价计算器
+      </div>
+
+      <div class="nav-section-title">💎 交付物明细与报价单</div>
+      <div class="nav-item" data-file="product-spec-and-pricing.md" onclick="loadDoc('product-spec-and-pricing.md')">
+        <span class="icon">💰</span> 交付物数量与标准报价单
       </div>
 
       <div class="nav-section-title">🚀 战略总纲 (Master Plan)</div>
@@ -866,11 +888,6 @@ html_template = f"""<!DOCTYPE html>
       </div>
       <div class="nav-item" data-file="07-conversion-loop.md" onclick="loadDoc('07-conversion-loop.md')">
         <span class="icon">🔄</span> 07. 转化闭环 SOP
-      </div>
-
-      <div class="nav-section-title">💎 交付物数量与标准报价单</div>
-      <div class="nav-item" data-file="product-spec-and-pricing.md" onclick="loadDoc('product-spec-and-pricing.md')">
-        <span class="icon">💰</span> 交付物数量与标准报价单
       </div>
 
       <div class="nav-section-title">🛠️ 学习与 SOP (SOP & Roadmap)</div>
@@ -900,7 +917,7 @@ html_template = f"""<!DOCTYPE html>
              onerror="if(this.src.indexOf('gensight_wide_banner.png')!==-1){{this.src='gensight_roadmap_banner.png';}}else{{this.src='assets/gensight_roadmap_banner.png';}}">
         <div class="banner-overlay">
           <div class="banner-title">
-            🌈 GenSight 5大跨境平台与独立站智能报价系统
+            🌈 GenSight 5大跨境平台与独立站智能报价及作品案例库
           </div>
           <div class="banner-subtitle">
             一键勾选项目 ➔ 自动计算确切交付数量与标准 ➔ 实时生成官方 PDF 报价单与微信发单文本
@@ -928,6 +945,8 @@ html_template = f"""<!DOCTYPE html>
     const docs = {docs_json};
     const docTitles = {titles_json};
     const docFiles = [
+      "visual-portfolio-showcase.md",
+      "product-spec-and-pricing.md",
       "05-crossborder-opc-master-plan.md",
       "01-resource-audit.md",
       "02-niche-positioning.md",
@@ -935,7 +954,6 @@ html_template = f"""<!DOCTYPE html>
       "04-business-model.md",
       "06-mvp-design.md",
       "07-conversion-loop.md",
-      "product-spec-and-pricing.md",
       "learning-and-sop-roadmap.md",
       "demo-case-blueprint.md",
       "README.md"
@@ -1475,4 +1493,4 @@ with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Granular Item Deliverables & Standards!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Visual Portfolio Showcase!")
