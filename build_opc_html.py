@@ -5,6 +5,7 @@ doc_dir = 'opc-doc'
 docs = {}
 
 doc_titles = {
+    "daily-action-and-review-guide.md": "📅 每日行动指南与复盘 (Daily Workbench)",
     "visual-portfolio-showcase.md": "🖼️ 视觉作品与 Demo 样板库 (Portfolio Showcase)",
     "product-spec-and-pricing.md": "💎 交付物数量与标准报价单 (Product & Pricing)",
     "05-crossborder-opc-master-plan.md": "05. OPC 运营方案总纲 (Master Plan)",
@@ -20,6 +21,7 @@ doc_titles = {
 }
 
 doc_categories = {
+    "daily-action-and-review-guide.md": "execution",
     "visual-portfolio-showcase.md": "product",
     "product-spec-and-pricing.md": "product",
     "05-crossborder-opc-master-plan.md": "master",
@@ -546,6 +548,134 @@ html_template = f"""<!DOCTYPE html>
       border-top: 1px solid var(--border-color);
     }}
 
+    /* Daily Workbench Styles */
+    .daily-container {{
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }}
+
+    .daily-header-row {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-main);
+      padding: 16px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+    }}
+
+    .date-picker-group {{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }}
+
+    .date-input {{
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 14px;
+      outline: none;
+    }}
+
+    .daily-grid {{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }}
+
+    @media (max-width: 950px) {{
+      .daily-grid {{
+        grid-template-columns: 1fr;
+      }}
+    }}
+
+    .daily-card {{
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }}
+
+    .card-head-title {{
+      font-size: 16.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }}
+
+    .form-field {{
+      margin-bottom: 16px;
+    }}
+
+    .field-label {{
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }}
+
+    .text-input, .textarea-input {{
+      width: 100%;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+      transition: all 0.2s;
+    }}
+
+    .textarea-input {{
+      min-height: 80px;
+      resize: vertical;
+    }}
+
+    .text-input:focus, .textarea-input:focus {{
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }}
+
+    .checklist-group {{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }}
+
+    .checklist-item {{
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      background: var(--bg-main);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }}
+
+    .checklist-item input[type="checkbox"] {{
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }}
+
     /* Calculator Styles */
     .calculator-container {{
       display: grid;
@@ -838,7 +968,7 @@ html_template = f"""<!DOCTYPE html>
       <span class="logo-icon">🌈</span>
       <div class="title-text">
         GenSight · 5大跨境平台与独立站视觉素材代制作实验室
-        <span class="title-tag">作品与报价系统</span>
+        <span class="title-tag">OPC 协同工作台</span>
       </div>
     </div>
 
@@ -868,13 +998,18 @@ html_template = f"""<!DOCTYPE html>
         <span>📖</span> 目录导航
       </div>
 
+      <div class="nav-section-title">📅 每日行动与复盘闭环</div>
+      <div class="nav-item active" data-file="daily-workbench" onclick="loadDailyWorkbench()">
+        <span class="icon">📅</span> 每日行动指南与复盘
+      </div>
+
       <div class="nav-section-title">🖼️ 视觉作品与 Demo 库</div>
       <div class="nav-item" data-file="visual-portfolio-showcase.md" onclick="loadDoc('visual-portfolio-showcase.md')">
         <span class="icon">🖼️</span> 5大平台与独立站 Demo 样板
       </div>
 
       <div class="nav-section-title">⚡ 智能报价工具 (Price Calculator)</div>
-      <div class="nav-item active" data-file="calculator" onclick="loadCalculator()">
+      <div class="nav-item" data-file="calculator" onclick="loadCalculator()">
         <span class="icon">🧮</span> 智能报价计算器
       </div>
 
@@ -935,10 +1070,10 @@ html_template = f"""<!DOCTYPE html>
              onerror="if(this.src.indexOf('gensight_wide_banner.png')!==-1){{this.src='gensight_roadmap_banner.png';}}else{{this.src='assets/gensight_roadmap_banner.png';}}">
         <div class="banner-overlay">
           <div class="banner-title">
-            🌈 GenSight 5大跨境平台与独立站智能报价及作品案例库
+            🌈 GenSight 每日行动指南、记录与晚间复盘工作台
           </div>
           <div class="banner-subtitle">
-            一键勾选项目 ➔ 自动计算确切交付数量与标准 ➔ 实时生成官方 PDF 报价单与微信发单文本
+            刺刀见红抓获客 ➔ 极速出图保现金流 ➔ 晚间四问日复盘 ➔ 次日 Top 3 规划 (自动持久化与一键导出)
           </div>
         </div>
       </div>
@@ -946,7 +1081,7 @@ html_template = f"""<!DOCTYPE html>
       <!-- Document Content Card -->
       <div class="doc-card">
         <div id="docViewer">
-          <!-- Calculator UI or Markdown Content -->
+          <!-- Daily Workbench, Calculator UI or Markdown Content -->
         </div>
 
         <!-- Footer Page Navigation -->
@@ -963,6 +1098,7 @@ html_template = f"""<!DOCTYPE html>
     const docs = {docs_json};
     const docTitles = {titles_json};
     const docFiles = [
+      "daily-action-and-review-guide.md",
       "visual-portfolio-showcase.md",
       "product-spec-and-pricing.md",
       "05-crossborder-opc-master-plan.md",
@@ -977,8 +1113,9 @@ html_template = f"""<!DOCTYPE html>
       "README.md"
     ];
 
-    let currentFile = "calculator";
+    let currentFile = "daily-workbench";
     let selectedCurr = "RMB"; // 'RMB' or 'USD'
+    let currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
     // Pricing items state
     let state = {{
@@ -1017,6 +1154,202 @@ html_template = f"""<!DOCTYPE html>
       const current = document.documentElement.getAttribute('data-theme') || 'light';
       const nextTheme = current === 'light' ? 'dark' : 'light';
       setTheme(nextTheme);
+    }}
+
+    // DAILY WORKBENCH LOGIC
+    function loadDailyWorkbench() {{
+      currentFile = "daily-workbench";
+      document.getElementById('footerNav').style.display = 'none';
+
+      // Update Nav Class
+      document.querySelectorAll('.nav-item').forEach(el => {{
+        if (el.dataset.file === 'daily-workbench') el.classList.add('active');
+        else el.classList.remove('active');
+      }});
+
+      renderDailyWorkbenchUI();
+    }}
+
+    function getDailyData(dateStr) {{
+      const key = `gensight_daily_${{dateStr}}`;
+      const raw = localStorage.getItem(key);
+      if (raw) return JSON.parse(raw);
+      return {{
+        chk1: false, chk2: false, chk3: false, chk4: false,
+        revenue: '', contacts: '', deliverables: '',
+        q1: '', q2: '', q3: '', q4: '',
+        top1: '', top2: '', top3: ''
+      }};
+    }}
+
+    function saveDailyData() {{
+      const key = `gensight_daily_${{currentDate}}`;
+      const data = {{
+        chk1: document.getElementById('chk1')?.checked || false,
+        chk2: document.getElementById('chk2')?.checked || false,
+        chk3: document.getElementById('chk3')?.checked || false,
+        chk4: document.getElementById('chk4')?.checked || false,
+        revenue: document.getElementById('revenueInput')?.value || '',
+        contacts: document.getElementById('contactsInput')?.value || '',
+        deliverables: document.getElementById('deliverablesInput')?.value || '',
+        q1: document.getElementById('q1Input')?.value || '',
+        q2: document.getElementById('q2Input')?.value || '',
+        q3: document.getElementById('q3Input')?.value || '',
+        q4: document.getElementById('q4Input')?.value || '',
+        top1: document.getElementById('top1Input')?.value || '',
+        top2: document.getElementById('top2Input')?.value || '',
+        top3: document.getElementById('top3Input')?.value || ''
+      }};
+      localStorage.setItem(key, JSON.stringify(data));
+    }}
+
+    function changeDailyDate(e) {{
+      saveDailyData();
+      currentDate = e.target.value;
+      renderDailyWorkbenchUI();
+    }}
+
+    function renderDailyWorkbenchUI() {{
+      const d = getDailyData(currentDate);
+
+      const html = `
+        <div class="daily-container">
+          <!-- Top Date Bar & Action Buttons -->
+          <div class="daily-header-row">
+            <div class="date-picker-group">
+              <span style="font-weight: 800; font-size: 16px;">📅 选择工作日：</span>
+              <input type="date" class="date-input" value="${{currentDate}}" onchange="changeDailyDate(event)">
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn-action btn-primary" onclick="copyDailySummary()">📋 一键复制今日复盘至飞书/微信</button>
+              <button class="btn-action" onclick="window.print()">🖨️ 打印导出复盘表</button>
+            </div>
+          </div>
+
+          <div class="daily-grid">
+            <!-- Card 1: Daily Action Guide & Checklist -->
+            <div class="daily-card">
+              <div class="card-head-title">
+                <span>☀️</span> 1. 今日核心行动清单 (刺刀见红)
+              </div>
+              <div class="checklist-group">
+                <label class="checklist-item">
+                  <input type="checkbox" id="chk1" ${{d.chk1 ? 'checked' : ''}} onchange="saveDailyData()">
+                  <span><strong>[09:00 - 09:30] 晨会站会</strong>：Howard & Brian 确认今日现金流基石订单与出海视觉排期。</span>
+                </label>
+                <label class="checklist-item">
+                  <input type="checkbox" id="chk2" ${{d.chk2 ? 'checked' : ''}} onchange="saveDailyData()">
+                  <span><strong>[09:30 - 12:00] 获客刺刀见红</strong>：挑选 5 家视觉较差外贸商家，制作 1 张免费爆改对比主图卡发给老板。</span>
+                </label>
+                <label class="checklist-item">
+                  <input type="checkbox" id="chk3" ${{d.chk3 ? 'checked' : ''}} onchange="saveDailyData()">
+                  <span><strong>[14:00 - 17:30] 极速交付</strong>：Brian 完成 5 大平台 Prompt 跑图与精修，交付已结订金订单。</span>
+                </label>
+                <label class="checklist-item">
+                  <input type="checkbox" id="chk4" ${{d.chk4 ? 'checked' : ''}} onchange="saveDailyData()">
+                  <span><strong>[17:30 - 18:00] 数据归档</strong>：记录进账与触达数，跟进意向商家引导测试包 (¥880) 转化。</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Card 2: Today's Metrics -->
+            <div class="daily-card">
+              <div class="card-head-title">
+                <span>📊</span> 2. 今日战报与数据记录
+              </div>
+              <div class="form-field">
+                <div class="field-label">💰 今日现金流实收进账 (元/RMB)：</div>
+                <input type="text" id="revenueInput" class="text-input" placeholder="例：¥1,680 (单SKU开款包)" value="${{d.revenue}}" oninput="saveDailyData()">
+              </div>
+              <div class="form-field">
+                <div class="field-label">🤝 今日触达外贸商家数与意向回复：</div>
+                <input type="text" id="contactsInput" class="text-input" placeholder="例：触达5家，2家深度沟通，1家意向测试" value="${{d.contacts}}" oninput="saveDailyData()">
+              </div>
+              <div class="form-field">
+                <div class="field-label">📦 今日完成交付物数 (套/张)：</div>
+                <input type="text" id="deliverablesInput" class="text-input" placeholder="例：交付 1 套 Listing 升级包 (8 件物料)" value="${{d.deliverables}}" oninput="saveDailyData()">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Evening Review Four Questions -->
+          <div class="daily-card">
+            <div class="card-head-title">
+              <span>🌙</span> 3. OPC 晚间四问日复盘 (Evening Review)
+            </div>
+
+            <div class="form-field">
+              <div class="field-label">🌟 问 1：今日最大的亮点与商业战果是什么？(What Went Well?)</div>
+              <textarea id="q1Input" class="textarea-input" placeholder="总结今天做对的事，如成功收齐尾款、对比图获得老板高赞..." oninput="saveDailyData()">${{d.q1}}</textarea>
+            </div>
+
+            <div class="form-field">
+              <div class="field-label">🚨 问 2：今日遇到的最大阻碍与交付卡点是什么？(Bottleneck)</div>
+              <textarea id="q2Input" class="textarea-input" placeholder="分析卡卡瓶颈，如某一类目 AI 跑图风格偏离、客户沟通账期拖延..." oninput="saveDailyData()">${{d.q2}}</textarea>
+            </div>
+
+            <div class="form-field">
+              <div class="field-label">💡 问 3：今日验证了什么新假设？发现了什么新市场机会？(Insights)</div>
+              <textarea id="q3Input" class="textarea-input" placeholder="如美客多拉美商家西语需求爆发、TikTok 微动效封面转化率高..." oninput="saveDailyData()">${{d.q3}}</textarea>
+            </div>
+
+            <div class="form-field">
+              <div class="field-label">🔄 问 4：基于今天复盘，做出哪些闭环调整？(Stop / Keep / Start)</div>
+              <textarea id="q4Input" class="textarea-input" placeholder="Stop: 停止无收益低效琐事 | Keep: 保持每日对比图获客 | Start: 明天开始加推案例" oninput="saveDailyData()">${{d.q4}}</textarea>
+            </div>
+          </div>
+
+          <!-- Section 3: Next-Day Planning Top 3 -->
+          <div class="daily-card">
+            <div class="card-head-title">
+              <span>🚀</span> 4. 明日工作规划 Top 3 优先级 (Next-Day Planning)
+            </div>
+            <div class="form-field">
+              <div class="field-label">🔴 优先级 1 (最高 - 已预付客户交付)：</div>
+              <input type="text" id="top1Input" class="text-input" placeholder="例：完成张总亚马逊 Listing 8 件套最终高精导出与交付" value="${{d.top1}}" oninput="saveDailyData()">
+            </div>
+            <div class="form-field">
+              <div class="field-label">🟡 优先级 2 (主动获客与触达)：</div>
+              <input type="text" id="top2Input" class="text-input" placeholder="例：对 5 家美客多拉美户外商家发送西语爆改主图卡" value="${{d.top2}}" oninput="saveDailyData()">
+            </div>
+            <div class="form-field">
+              <div class="field-label">🟢 优先级 3 (资产沉淀)：</div>
+              <input type="text" id="top3Input" class="text-input" placeholder="例：沉淀 1 套 SHEIN 3:4 杂志感服装通用 Prompt 模板" value="${{d.top3}}" oninput="saveDailyData()">
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('docViewer').innerHTML = html;
+    }}
+
+    function copyDailySummary() {{
+      saveDailyData();
+      const d = getDailyData(currentDate);
+
+      let text = `【GenSight OPC 每日工作战报与日复盘 - ${{currentDate}}】\\n`;
+      text += `责任人：Howard & Brian\\n`;
+      text += `==================================\\n`;
+      text += `📊 【今日数据记录】\\n`;
+      text += `• 现金流进账: ${{d.revenue || '未填写'}}\\n`;
+      text += `• 商家触达数: ${{d.contacts || '未填写'}}\\n`;
+      text += `• 交付物数量: ${{d.deliverables || '未填写'}}\\n\\n`;
+
+      text += `🌙 【OPC 晚间四问复盘】\\n`;
+      text += `1. 亮点战果: ${{d.q1 || '未填写'}}\\n`;
+      text += `2. 阻碍瓶颈: ${{d.q2 || '未填写'}}\\n`;
+      text += `3. 假设洞察: ${{d.q3 || '未填写'}}\\n`;
+      text += `4. 闭环调整 (Stop/Keep/Start): ${{d.q4 || '未填写'}}\\n\\n`;
+
+      text += `🚀 【明日 Top 3 规划】\\n`;
+      text += `1. ${{d.top1 || '未填写'}}\\n`;
+      text += `2. ${{d.top2 || '未填写'}}\\n`;
+      text += `3. ${{d.top3 || '未填写'}}\\n`;
+      text += `==================================\\n`;
+
+      navigator.clipboard.writeText(text).then(() => {{
+        alert("今日复盘战报已成功复制到剪贴板！可直接粘贴至飞书或微信群。");
+      }});
     }}
 
     // Calculator Render Logic
@@ -1465,6 +1798,10 @@ html_template = f"""<!DOCTYPE html>
     }}
 
     function copyMarkdown() {{
+      if (currentFile === 'daily-workbench') {{
+        copyDailySummary();
+        return;
+      }}
       if (currentFile === 'calculator') {{
         copyBillSummary();
         return;
@@ -1479,7 +1816,8 @@ html_template = f"""<!DOCTYPE html>
     document.getElementById('searchInput').addEventListener('input', function(e) {{
       const query = e.target.value.toLowerCase().trim();
       if (!query) {{
-        if (currentFile === 'calculator') loadCalculator();
+        if (currentFile === 'daily-workbench') loadDailyWorkbench();
+        else if (currentFile === 'calculator') loadCalculator();
         else loadDoc(currentFile);
         return;
       }}
@@ -1493,9 +1831,9 @@ html_template = f"""<!DOCTYPE html>
       }}
     }});
 
-    // Initialize Theme and Default View (Calculator)
+    // Initialize Theme and Default View (Daily Workbench)
     initTheme();
-    loadCalculator();
+    loadDailyWorkbench();
   </script>
 </body>
 </html>
@@ -1511,4 +1849,4 @@ with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Spacious Table Padding!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Daily Action & Review Workbench!")
