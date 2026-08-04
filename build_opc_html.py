@@ -54,6 +54,12 @@ DOCUMENTS = [
         "description": "战略假设、里程碑与验证路径",
     },
     {
+        "file": "01-resource-audit.md",
+        "title": "资源与约束盘点",
+        "group": "reference",
+        "description": "团队资源、边界与可用杠杆",
+    },
+    {
         "file": "02-niche-positioning.md",
         "title": "平台与客户定位",
         "group": "reference",
@@ -82,6 +88,12 @@ DOCUMENTS = [
         "title": "Demo 样板策略",
         "group": "reference",
         "description": "首个样板站的选型与包装",
+    },
+    {
+        "file": "README.md",
+        "title": "OPC 资料索引",
+        "group": "reference",
+        "description": "方法论阶段与资料关系",
     },
 ]
 
@@ -162,17 +174,19 @@ def build_html(docs: dict[str, str]) -> str:
   <div class="shell">
     <header><div class="brand"><span class="brand-mark">G</span><span>GenSight</span></div><span class="status">CROSS-BORDER VISUAL OPS · 2026-08</span></header>
     <main>
-      <section class="hero">
-        <div><p class="eyebrow">Internal operations portal</p><h1>把跨境视觉外包做成每天能推进的系统。</h1><p>这里只回答一个问题：现在该做什么。任务、线索、成交和复盘以飞书多维表格为准；本站只保留判断、SOP、案例和报价上下文。</p></div>
-        <aside class="decision-card"><strong>当前唯一主线</strong><p>Amazon、美客多、Shopee、TikTok、SHEIN 与 Shopify 的视觉素材代制作。国内设计为机会型现金流，不占用主动获客资源。</p></aside>
-      </section>
-      <p class="section-label">Start here · 每天只走这三步</p>
-      <section class="today-grid">
-        <article class="card"><span class="card-number">01</span><h2>在飞书看今日任务</h2><p>只确认 Howard 与 Brian 各自 1–3 项可验收输出，任务、截止日与交接状态以飞书为准。</p></article>
-        <article class="card"><span class="card-number">02</span><h2>按 SOP 推进业务</h2><p>需要报价、平台规范、交付边界或案例素材时，再从下方打开对应资料。</p></article>
-        <article class="card"><span class="card-number">03</span><h2>在飞书完成复盘</h2><p>记录触达、询盘、成交、交付和一个关键瓶颈；次日 Top 3 从复盘中产生。</p></article>
-      </section>
-      <section class="feishu"><div><h2>飞书多维表格是唯一协作数据源</h2><p>本站不保存任务或客户数据，避免 GitHub Pages、本机工作台与飞书产生三份不同状态。</p></div><span class="feishu-badge">配置飞书入口后在此跳转</span></section>
+      <div id="home">
+        <section class="hero">
+          <div><p class="eyebrow">Internal operations portal</p><h1>把跨境视觉外包做成每天能推进的系统。</h1><p>这里只回答一个问题：现在该做什么。任务、线索、成交和复盘以飞书多维表格为准；本站只保留判断、SOP、案例和报价上下文。</p></div>
+          <aside class="decision-card"><strong>当前唯一主线</strong><p>Amazon、美客多、Shopee、TikTok、SHEIN 与 Shopify 的视觉素材代制作。国内设计为机会型现金流，不占用主动获客资源。</p></aside>
+        </section>
+        <p class="section-label">Start here · 每天只走这三步</p>
+        <section class="today-grid">
+          <article class="card"><span class="card-number">01</span><h2>在飞书看今日任务</h2><p>只确认 Howard 与 Brian 各自 1–3 项可验收输出，任务、截止日与交接状态以飞书为准。</p></article>
+          <article class="card"><span class="card-number">02</span><h2>按 SOP 推进业务</h2><p>需要报价、平台规范、交付边界或案例素材时，再从下方打开对应资料。</p></article>
+          <article class="card"><span class="card-number">03</span><h2>在飞书完成复盘</h2><p>记录触达、询盘、成交、交付和一个关键瓶颈；次日 Top 3 从复盘中产生。</p></article>
+        </section>
+        <section class="feishu"><div><h2>飞书多维表格是唯一协作数据源</h2><p>本站不保存任务或客户数据，避免 GitHub Pages、本机工作台与飞书产生三份不同状态。</p></div><span class="feishu-badge">配置飞书入口后在此跳转</span></section>
+      </div>
       <section class="layout">
         <nav id="nav" aria-label="资料导航"></nav>
         <div class="view">
@@ -191,6 +205,7 @@ def build_html(docs: dict[str, str]) -> str:
     const manifest = {manifest};
     const docs = {contents};
     const nav = document.querySelector("#nav");
+    const home = document.querySelector("#home");
     const startView = document.querySelector("#startView");
     const docView = document.querySelector("#docView");
     const groupLabels = {{ start: "先看这里", do: "执行时打开", reference: "战略参考" }};
@@ -215,7 +230,7 @@ def build_html(docs: dict[str, str]) -> str:
     function openDocument(file) {{
       const item = manifest.find(doc => doc.file === file);
       if (!item || !docs[file]) return;
-      activeFile = file; startView.style.display = "none"; docView.style.display = "block";
+      activeFile = file; home.style.display = "none"; startView.style.display = "none"; docView.style.display = "block";
       document.querySelector("#docMeta").textContent = `${{item.title}} · ${{item.description}}`;
       document.querySelector("#docBody").innerHTML = marked.parse(docs[file]);
       document.querySelectorAll("[data-doc-link]").forEach(link => link.addEventListener("click", event => {{
