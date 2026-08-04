@@ -12,7 +12,7 @@ doc_titles = {
     "04-business-model.md": "04. 精益商业模式 (Business Model)",
     "06-mvp-design.md": "06. MVP 验证设计 (MVP Design)",
     "07-conversion-loop.md": "07. 转化闭环 SOP (Conversion Loop)",
-    "product-spec-and-pricing.md": "💎 广告视觉外包手册与报价单 (Product & Pricing)",
+    "product-spec-and-pricing.md": "💎 5大平台与独立站视觉交付手册 (Product & Pricing)",
     "learning-and-sop-roadmap.md": "🛠️ 7天学习计划与协同SOP (Learning & SOP)",
     "demo-case-blueprint.md": "💡 首个 Demo 样板案例思考 (Demo Strategy)",
     "README.md": "📚 OPC 文档库说明 (Overview)"
@@ -47,7 +47,7 @@ html_template = f"""<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GenSight · 广告视觉与素材代制作外包实验室 (OPC 知识库)</title>
+  <title>GenSight · 5大跨境平台与独立站视觉素材代制作实验室 (OPC 知识库)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -589,8 +589,8 @@ html_template = f"""<!DOCTYPE html>
     <div class="logo-group">
       <span class="logo-icon">🌈</span>
       <div class="title-text">
-        GenSight · 广告视觉与素材代制作外包实验室
-        <span class="title-tag">AI 原生视觉外包</span>
+        GenSight · 5大跨境平台与独立站视觉素材代制作实验室
+        <span class="title-tag">多平台精细化交付</span>
       </div>
     </div>
 
@@ -630,7 +630,7 @@ html_template = f"""<!DOCTYPE html>
         <span class="icon">📊</span> 01. 资源盘点
       </div>
       <div class="nav-item" data-file="02-niche-positioning.md" onclick="loadDoc('02-niche-positioning.md')">
-        <span class="icon">🏹</span> 02. 利基定位重塑 (素材外包)
+        <span class="icon">🏹</span> 02. 利基定位重塑 (5大平台)
       </div>
       <div class="nav-item" data-file="03-value-proposition.md" onclick="loadDoc('03-value-proposition.md')">
         <span class="icon">💡</span> 03. 价值主张设计
@@ -645,7 +645,7 @@ html_template = f"""<!DOCTYPE html>
         <span class="icon">🔄</span> 07. 转化闭环 SOP
       </div>
 
-      <div class="nav-section-title">💎 广告视觉外包手册与报价</div>
+      <div class="nav-section-title">💎 5大平台与独立站视觉手册</div>
       <div class="nav-item" data-file="product-spec-and-pricing.md" onclick="loadDoc('product-spec-and-pricing.md')">
         <span class="icon">💰</span> 产品手册与报价单
       </div>
@@ -677,10 +677,10 @@ html_template = f"""<!DOCTYPE html>
              onerror="if(this.src.indexOf('gensight_wide_banner.png')!==-1){{this.src='gensight_roadmap_banner.png';}}else{{this.src='assets/gensight_roadmap_banner.png';}}">
         <div class="banner-overlay">
           <div class="banner-title">
-            🌈 GenSight 广告视觉与素材代制作外包实验室
+            🌈 5大跨境平台 (美客多/亚马逊/Shopee/TikTok/SHEIN) 与独立站素材实验室
           </div>
           <div class="banner-subtitle">
-            战略聚焦：国内/出海商家广告素材月包 (国内 ¥5,800/月 | 海外 $1,200/mo) — 商业策略 + 欧美大厂审美 + 3~5倍极速交付
+            精细化交付：单平台点播包 (¥1,680/全套) | 跨平台月包 (国内 ¥6,800/月 | 海外 $1,350/mo)
           </div>
         </div>
       </div>
@@ -688,27 +688,27 @@ html_template = f"""<!DOCTYPE html>
       <!-- Top KPI Row -->
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-label">聚焦赛道</div>
-          <div class="kpi-value" style="color: var(--accent-cyan);">广告视觉外包</div>
-          <div class="kpi-sub">国内外贸 + 海外品牌商</div>
+          <div class="kpi-label">涵盖 6 大场景</div>
+          <div class="kpi-value" style="color: var(--accent-cyan);">美客多/亚马逊/TikTok</div>
+          <div class="kpi-sub">加 Shopee / SHEIN / 独立站</div>
         </div>
 
         <div class="kpi-card">
-          <div class="kpi-label">国内月包定价</div>
-          <div class="kpi-value" style="color: var(--accent-green);">¥5,800 / 月</div>
-          <div class="kpi-sub">每月20套高CTR广告KV/Banner</div>
+          <div class="kpi-label">单平台开款包</div>
+          <div class="kpi-value" style="color: var(--accent-green);">¥1,680 / 选定SKU</div>
+          <div class="kpi-sub">1高精主图+6附图+Banner+多语种</div>
         </div>
 
         <div class="kpi-card">
-          <div class="kpi-label">海外月包定价</div>
-          <div class="kpi-value" style="color: var(--accent-gold);">$1,200 USD / 月</div>
-          <div class="kpi-sub">对比欧美Agency $3K+ 极高性价比</div>
+          <div class="kpi-label">跨平台主力月包</div>
+          <div class="kpi-value" style="color: var(--accent-gold);">¥6,800 / 月</div>
+          <div class="kpi-sub">24件核心素材 (含36张跨尺寸KV)</div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-label">团队协同分工</div>
           <div class="kpi-value" style="color: var(--accent-purple);">Howard & Brian</div>
-          <div class="kpi-sub">商业策略+文案 & 美工+AI排版</div>
+          <div class="kpi-sub">西/英/葡多语种策略 & AI排版</div>
         </div>
       </div>
 
@@ -850,4 +850,4 @@ with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Ad Visual Outsourcing updates!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Granular Multi-Platform Deliverables!")
