@@ -3,7 +3,7 @@
   "weeklyGoalOwner": "Howard",
   "weeklyGoalDue": "2026-08-08",
   "feishu": {
-    "baseUrl": "",
+    "baseUrl": "https://my.feishu.cn/wiki/RCuEwD91KiNrYakmEfDcpB6Incs",
     "setupNote": "在 portal/site-config.json 填入飞书多维表格 baseUrl 后重新运行 python3 build_opc_html.py",
     "tables": {
       "dailyTasks": {
@@ -14,7 +14,7 @@
       "handoff": {
         "label": "任务交接",
         "code": "T01",
-        "path": ""
+        "path": "?table=tbl2aQ6hCkvZoCtu&view=vew18TgLhP"
       },
       "leads": {
         "label": "询盘记录",
