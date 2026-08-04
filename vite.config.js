@@ -18,7 +18,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(process.cwd(), "index.html"),
+        deck: resolve(process.cwd(), "deck/index.html"),
         resume: resolve(process.cwd(), "resume/index.html"),
       },
     },

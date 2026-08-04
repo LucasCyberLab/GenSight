@@ -1,0 +1,68 @@
+{
+  "weeklyGoal": "完成 1 个跨境视觉 Demo 的案例包装，并向 25 个目标商家发出带诊断的定向触达，获得至少 3 个有效回复。",
+  "weeklyGoalOwner": "Howard",
+  "weeklyGoalDue": "2026-08-08",
+  "feishu": {
+    "baseUrl": "",
+    "setupNote": "在 portal/site-config.json 填入飞书多维表格 baseUrl 后重新运行 python3 build_opc_html.py",
+    "tables": {
+      "dailyTasks": {
+        "label": "每日任务",
+        "code": "T04",
+        "path": ""
+      },
+      "handoff": {
+        "label": "任务交接",
+        "code": "T01",
+        "path": ""
+      },
+      "leads": {
+        "label": "询盘记录",
+        "code": "T05",
+        "path": ""
+      },
+      "eveningReview": {
+        "label": "晚间复盘",
+        "code": "T06",
+        "path": ""
+      },
+      "cases": {
+        "label": "案例库",
+        "code": "T08",
+        "path": ""
+      },
+      "pricing": {
+        "label": "产品与报价",
+        "code": "T10",
+        "path": ""
+      }
+    }
+  },
+  "metrics": [
+    {
+      "id": "cash",
+      "label": "现金流",
+      "hint": "今日实收 / 待收尾款",
+      "table": "eveningReview",
+      "statusColors": { "good": "green", "warn": "yellow", "bad": "red" }
+    },
+    {
+      "id": "delivery",
+      "label": "交付",
+      "hint": "今日应交付 / 已交付 / 阻塞",
+      "table": "handoff",
+      "statusColors": { "good": "green", "warn": "yellow", "bad": "red" }
+    },
+    {
+      "id": "acquisition",
+      "label": "获客",
+      "hint": "有效触达 / 有效回复 / 新询盘",
+      "table": "leads",
+      "statusColors": { "good": "green", "warn": "yellow", "bad": "red" }
+    }
+  ],
+  "roles": {
+    "howard": "Howard",
+    "brian": "Brian"
+  }
+}
