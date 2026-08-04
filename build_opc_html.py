@@ -12,7 +12,7 @@ doc_titles = {
     "04-business-model.md": "04. 精益商业模式 (Business Model)",
     "06-mvp-design.md": "06. MVP 验证设计 (MVP Design)",
     "07-conversion-loop.md": "07. 转化闭环 SOP (Conversion Loop)",
-    "product-spec-and-pricing.md": "💎 产品手册与报价单 (Product & Pricing)",
+    "product-spec-and-pricing.md": "💎 双引擎产品手册与报价单 (Product & Pricing)",
     "learning-and-sop-roadmap.md": "🛠️ 7天学习计划与协同SOP (Learning & SOP)",
     "demo-case-blueprint.md": "💡 首个 Demo 样板案例思考 (Demo Strategy)",
     "README.md": "📚 OPC 文档库说明 (Overview)"
@@ -590,7 +590,7 @@ html_template = f"""<!DOCTYPE html>
       <span class="logo-icon">🌈</span>
       <div class="title-text">
         GenSight · 通往出海独立站与 AI 品牌之路
-        <span class="title-tag">OPC 知识库</span>
+        <span class="title-tag">OPC 双引擎模式</span>
       </div>
     </div>
 
@@ -630,13 +630,13 @@ html_template = f"""<!DOCTYPE html>
         <span class="icon">📊</span> 01. 资源盘点
       </div>
       <div class="nav-item" data-file="02-niche-positioning.md" onclick="loadDoc('02-niche-positioning.md')">
-        <span class="icon">🏹</span> 02. 利基定位重塑
+        <span class="icon">🏹</span> 02. 利基定位重塑 (双引擎)
       </div>
       <div class="nav-item" data-file="03-value-proposition.md" onclick="loadDoc('03-value-proposition.md')">
         <span class="icon">💡</span> 03. 价值主张设计
       </div>
       <div class="nav-item" data-file="04-business-model.md" onclick="loadDoc('04-business-model.md')">
-        <span class="icon">📐</span> 04. 精益商业模式
+        <span class="icon">📐</span> 04. 精益商业模式 (双引擎)
       </div>
       <div class="nav-item" data-file="06-mvp-design.md" onclick="loadDoc('06-mvp-design.md')">
         <span class="icon">🧪</span> 06. MVP 验证设计
@@ -645,7 +645,7 @@ html_template = f"""<!DOCTYPE html>
         <span class="icon">🔄</span> 07. 转化闭环 SOP
       </div>
 
-      <div class="nav-section-title">💎 产品与报价 (Product & Pricing)</div>
+      <div class="nav-section-title">💎 双引擎产品与报价</div>
       <div class="nav-item" data-file="product-spec-and-pricing.md" onclick="loadDoc('product-spec-and-pricing.md')">
         <span class="icon">💰</span> 产品手册与报价单
       </div>
@@ -680,7 +680,7 @@ html_template = f"""<!DOCTYPE html>
             🌈 通往 GenSight 出海独立站与 AI 品牌之路
           </div>
           <div class="banner-subtitle">
-            愿景与目标：策略先于建站，视觉撬动转化 — 让中小型企业出海少走弯路，让品牌借力 AI 高效飞跃。
+            战略定位：【双引擎模式】现金流基石（海报/PPT/效果图已实收1.5万） + 出海独立站品牌全案 (¥19.8K~¥39.8K)
           </div>
         </div>
       </div>
@@ -688,27 +688,27 @@ html_template = f"""<!DOCTYPE html>
       <!-- Top KPI Row -->
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-label">项目阶段</div>
-          <div class="kpi-value" style="color: var(--accent-cyan);">出海独立站全案</div>
-          <div class="kpi-sub">建盘完成 ➔ 7天SOP执行</div>
+          <div class="kpi-label">战略模式</div>
+          <div class="kpi-value" style="color: var(--accent-cyan);">双引擎驱动模式</div>
+          <div class="kpi-sub">现金流基石 + 出海高溢价</div>
         </div>
 
         <div class="kpi-card">
-          <div class="kpi-label">主力全案定价</div>
+          <div class="kpi-label">引擎A: 现金流已实收</div>
+          <div class="kpi-value" style="color: var(--accent-green);">¥15,000 元</div>
+          <div class="kpi-sub">广告KV / 海报 / 商业PPT / VI</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">引擎B: 出海全案定价</div>
           <div class="kpi-value" style="color: var(--accent-gold);">¥19.8K ~ ¥39.8K</div>
           <div class="kpi-sub">Shopify / WP 独立站全案</div>
         </div>
 
         <div class="kpi-card">
-          <div class="kpi-label">长期 LTV 续费</div>
-          <div class="kpi-value" style="color: var(--accent-green);">¥5,680 / 月</div>
-          <div class="kpi-sub">海外广告视觉代制作包</div>
-        </div>
-
-        <div class="kpi-card">
           <div class="kpi-label">团队协同分工</div>
           <div class="kpi-value" style="color: var(--accent-purple);">Howard & Brian</div>
-          <div class="kpi-sub">商业策略+英文Copy & 欧美视觉</div>
+          <div class="kpi-sub">30% 现金流 / 70% 出海攻坚</div>
         </div>
       </div>
 
@@ -850,4 +850,4 @@ with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Wide Banner and Multi-fallback!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Dual Engine updates!")
