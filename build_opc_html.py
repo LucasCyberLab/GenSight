@@ -396,18 +396,18 @@ html_template = f"""<!DOCTYPE html>
       transition: background-color 0.3s, border-color 0.3s;
     }}
 
-    /* Markdown Styling & Image Display */
+    /* Markdown Styling & Spacious Spacing Improvement */
     .markdown-body {{
       color: var(--text-main);
       font-size: 15px;
-      line-height: 1.75;
+      line-height: 1.8;
     }}
 
     .markdown-body img {{
       max-width: 100%;
       height: auto;
       border-radius: 14px;
-      margin: 20px 0;
+      margin: 28px 0;
       box-shadow: var(--shadow-card);
       border: 1px solid var(--border-color);
       display: block;
@@ -416,8 +416,8 @@ html_template = f"""<!DOCTYPE html>
     .markdown-body h1 {{
       font-size: 26px;
       font-weight: 800;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
       border-bottom: 2px solid var(--border-color);
       color: var(--text-main);
     }}
@@ -425,8 +425,8 @@ html_template = f"""<!DOCTYPE html>
     .markdown-body h2 {{
       font-size: 20px;
       font-weight: 700;
-      margin-top: 32px;
-      margin-bottom: 14px;
+      margin-top: 38px;
+      margin-bottom: 18px;
       color: var(--accent-blue);
       display: flex;
       align-items: center;
@@ -434,51 +434,69 @@ html_template = f"""<!DOCTYPE html>
     }}
 
     .markdown-body h3 {{
-      font-size: 16px;
+      font-size: 16.5px;
       font-weight: 700;
-      margin-top: 24px;
-      margin-bottom: 10px;
+      margin-top: 28px;
+      margin-bottom: 12px;
       color: var(--text-main);
     }}
 
     .markdown-body p {{
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       color: var(--text-main);
     }}
 
     .markdown-body blockquote {{
       border-left: 4px solid var(--accent-blue);
       background: rgba(37, 99, 235, 0.05);
-      padding: 14px 20px;
+      padding: 16px 24px;
       border-radius: 0 10px 10px 0;
-      margin: 20px 0;
+      margin: 28px 0;
       color: var(--text-main);
     }}
 
+    /* High Density Table Spacing Improvement */
     .markdown-body table {{
       width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
-      font-size: 14px;
-      border-radius: 10px;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 32px 0;
+      font-size: 14.5px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     }}
 
     .markdown-body th {{
       background: var(--table-header-bg);
       color: var(--text-main);
-      font-weight: 700;
+      font-weight: 800;
       text-align: left;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 16px 22px;
+      border-bottom: 1.5px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      line-height: 1.6;
+      white-space: nowrap;
     }}
 
     .markdown-body td {{
-      padding: 12px 16px;
+      padding: 16px 22px;
       border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
       background: var(--bg-card);
       color: var(--text-main);
+      line-height: 1.7;
+      vertical-align: middle;
+    }}
+
+    .markdown-body th:last-child,
+    .markdown-body td:last-child {{
+      border-right: none;
+    }}
+
+    .markdown-body tr:last-child td {{
+      border-bottom: none;
     }}
 
     .markdown-body tr:hover td {{
@@ -487,19 +505,19 @@ html_template = f"""<!DOCTYPE html>
 
     .markdown-body ul, .markdown-body ol {{
       padding-left: 24px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }}
 
     .markdown-body li {{
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: var(--text-main);
     }}
 
     .markdown-body code {{
       background: var(--code-bg);
       color: var(--code-text);
-      padding: 2px 6px;
-      border-radius: 4px;
+      padding: 3px 8px;
+      border-radius: 6px;
       font-family: monospace;
       font-size: 13.5px;
     }}
@@ -508,9 +526,9 @@ html_template = f"""<!DOCTYPE html>
       background: var(--code-bg);
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 16px;
+      padding: 20px;
       overflow-x: auto;
-      margin: 20px 0;
+      margin: 24px 0;
     }}
 
     .markdown-body pre code {{
@@ -1493,4 +1511,4 @@ with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Visual Portfolio Showcase!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Spacious Table Padding!")
