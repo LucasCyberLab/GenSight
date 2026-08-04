@@ -516,6 +516,214 @@
       border-top: 1px solid var(--border-color);
     }
 
+    /* Calculator Styles */
+    .calculator-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 28px;
+    }
+
+    @media (max-width: 1000px) {
+      .calculator-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .calc-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .calc-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .currency-switcher {
+      display: flex;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+
+    .curr-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .curr-btn.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    }
+
+    .option-group {
+      margin-bottom: 24px;
+    }
+
+    .group-label {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .item-card {
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-card);
+    }
+
+    .item-card:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .item-card.selected {
+      border-color: var(--accent-blue);
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    .item-info {
+      flex: 1;
+      padding-right: 16px;
+    }
+
+    .item-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .item-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .item-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qty-num {
+      font-size: 14px;
+      font-weight: 700;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Right Bill Summary */
+    .summary-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent-blue);
+      border-radius: 16px;
+      padding: 24px;
+      position: sticky;
+      top: 88px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .bill-header {
+      font-size: 18px;
+      font-weight: 800;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bill-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .bill-total-box {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 2px dashed var(--border-color);
+    }
+
+    .bill-total-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .bill-total-amount {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--accent-blue);
+      margin-top: 4px;
+    }
+
+    .discount-badge {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .action-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       .sidebar {
@@ -546,7 +754,7 @@
       <span class="logo-icon">🌈</span>
       <div class="title-text">
         GenSight · 5大跨境平台与独立站视觉素材代制作实验室
-        <span class="title-tag">多平台精细化交付</span>
+        <span class="title-tag">智能报价系统</span>
       </div>
     </div>
 
@@ -576,8 +784,13 @@
         <span>📖</span> 目录导航
       </div>
 
+      <div class="nav-section-title">⚡ 智能报价工具 (Price Calculator)</div>
+      <div class="nav-item active" data-file="calculator" onclick="loadCalculator()">
+        <span class="icon">🧮</span> 智能报价计算器
+      </div>
+
       <div class="nav-section-title">🚀 战略总纲 (Master Plan)</div>
-      <div class="nav-item active" data-file="05-crossborder-opc-master-plan.md" onclick="loadDoc('05-crossborder-opc-master-plan.md')">
+      <div class="nav-item" data-file="05-crossborder-opc-master-plan.md" onclick="loadDoc('05-crossborder-opc-master-plan.md')">
         <span class="icon">🌈</span> 05. 通往 GenSight 视觉外包之路
       </div>
 
@@ -633,49 +846,22 @@
              onerror="if(this.src.indexOf('gensight_wide_banner.png')!==-1){this.src='gensight_roadmap_banner.png';}else{this.src='assets/gensight_roadmap_banner.png';}">
         <div class="banner-overlay">
           <div class="banner-title">
-            🌈 5大跨境平台 (美客多/亚马逊/Shopee/TikTok/SHEIN) 与独立站素材实验室
+            🌈 GenSight 5大跨境平台与独立站智能报价系统
           </div>
           <div class="banner-subtitle">
-            精细化交付：单平台点播包 (¥1,680/全套) | 跨平台月包 (国内 ¥6,800/月 | 海外 $1,350/mo)
+            一键勾选项目 ➔ 自动计算多语种/多尺寸素材预算 ➔ 实时生成项目清单与官方 PDF 报价单
           </div>
-        </div>
-      </div>
-
-      <!-- Top KPI Row -->
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <div class="kpi-label">涵盖 6 大场景</div>
-          <div class="kpi-value" style="color: var(--accent-cyan);">美客多/亚马逊/TikTok</div>
-          <div class="kpi-sub">加 Shopee / SHEIN / 独立站</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">单平台开款包</div>
-          <div class="kpi-value" style="color: var(--accent-green);">¥1,680 / 选定SKU</div>
-          <div class="kpi-sub">1高精主图+6附图+Banner+多语种</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">跨平台主力月包</div>
-          <div class="kpi-value" style="color: var(--accent-gold);">¥6,800 / 月</div>
-          <div class="kpi-sub">24件核心素材 (含36张跨尺寸KV)</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">团队协同分工</div>
-          <div class="kpi-value" style="color: var(--accent-purple);">Howard & Brian</div>
-          <div class="kpi-sub">西/英/葡多语种策略 & AI排版</div>
         </div>
       </div>
 
       <!-- Document Content Card -->
       <div class="doc-card">
-        <div id="docViewer" class="markdown-body">
-          <!-- Rendered Markdown will appear here -->
+        <div id="docViewer">
+          <!-- Calculator UI or Markdown Content -->
         </div>
 
         <!-- Footer Page Navigation -->
-        <div class="doc-footer-nav">
+        <div class="doc-footer-nav" id="footerNav">
           <button id="prevBtn" class="btn-action" onclick="prevDoc()">← 上一文档</button>
           <button id="nextBtn" class="btn-action btn-primary" onclick="nextDoc()">下一文档 →</button>
         </div>
@@ -701,9 +887,21 @@
       "README.md"
     ];
 
-    let currentFile = "05-crossborder-opc-master-plan.md";
+    let currentFile = "calculator";
+    let selectedCurr = "RMB"; // 'RMB' or 'USD'
 
-    // Theme Management (Light by default, toggleable to dark)
+    // Pricing items state
+    let state = {
+      trial: false,
+      singleSkuQty: 0,
+      monthlyTerm: 'none', // 'none', 'month', 'quarter', 'halfyear'
+      addonAplus: false,
+      addonMultiLang: false,
+      addonTiktokMotionQty: 0,
+      addonVi: false
+    };
+
+    // Theme Management
     function initTheme() {
       const savedTheme = localStorage.getItem('gensight_theme') || 'light';
       setTheme(savedTheme);
@@ -731,9 +929,313 @@
       setTheme(nextTheme);
     }
 
+    // Calculator Render Logic
+    function loadCalculator() {
+      currentFile = "calculator";
+      document.getElementById('footerNav').style.display = 'none';
+
+      // Update Nav Class
+      document.querySelectorAll('.nav-item').forEach(el => {
+        if (el.dataset.file === 'calculator') el.classList.add('active');
+        else el.classList.remove('active');
+      });
+
+      renderCalculatorUI();
+    }
+
+    function switchCurrency(curr) {
+      selectedCurr = curr;
+      renderCalculatorUI();
+    }
+
+    function renderCalculatorUI() {
+      const symbol = selectedCurr === 'RMB' ? '¥' : '$';
+      const unit = selectedCurr === 'RMB' ? '元' : 'USD';
+
+      // Item Prices
+      const pTrial = selectedCurr === 'RMB' ? 880 : 150;
+      const pSku = selectedCurr === 'RMB' ? 1680 : 280;
+      const pMonth = selectedCurr === 'RMB' ? 6800 : 1350;
+      const pQuarter = selectedCurr === 'RMB' ? 18800 : 3600;
+      const pHalfyear = selectedCurr === 'RMB' ? 33800 : 6500;
+
+      const pAplus = selectedCurr === 'RMB' ? 1200 : 200;
+      const pLang = selectedCurr === 'RMB' ? 800 : 130;
+      const pTtMotion = selectedCurr === 'RMB' ? 600 : 100;
+      const pVi = selectedCurr === 'RMB' ? 1980 : 320;
+
+      // Calculate Total
+      let total = 0;
+      let billList = [];
+      let discountText = "";
+
+      if (state.trial) {
+        total += pTrial;
+        billList.push({ name: "3套高CTR素材体验包 (共6张图)", price: `${symbol}${pTrial.toLocaleString()}` });
+      }
+
+      if (state.singleSkuQty > 0) {
+        const skuSub = state.singleSkuQty * pSku;
+        total += skuSub;
+        billList.push({ name: `单平台 Listing 开款包 x${state.singleSkuQty} SKU`, price: `${symbol}${skuSub.toLocaleString()}` });
+      }
+
+      if (state.monthlyTerm === 'month') {
+        total += pMonth;
+        billList.push({ name: "多平台跨平台素材代制作包 (月付)", price: `${symbol}${pMonth.toLocaleString()}` });
+      } else if (state.monthlyTerm === 'quarter') {
+        total += pQuarter;
+        billList.push({ name: "多平台跨平台素材代制作包 (季签 - 省资金)", price: `${symbol}${pQuarter.toLocaleString()}` });
+        discountText = selectedCurr === 'RMB' ? "🎉 已享受季签折扣（立省 ¥1,600）" : "🎉 Quarter Discount Applied (Saved $450 USD)";
+      } else if (state.monthlyTerm === 'halfyear') {
+        total += pHalfyear;
+        billList.push({ name: "多平台跨平台素材代制作包 (半年签 - 专享价)", price: `${symbol}${pHalfyear.toLocaleString()}` });
+        discountText = selectedCurr === 'RMB' ? "🎉 已享受半年签专享折扣（立省 ¥7,000）" : "🎉 Half-Year Discount Applied (Saved $1,600 USD)";
+      }
+
+      if (state.addonAplus) {
+        total += pAplus;
+        billList.push({ name: "亚马逊 A+ 页面高级模块定制", price: `${symbol}${pAplus.toLocaleString()}` });
+      }
+
+      if (state.addonMultiLang) {
+        total += pLang;
+        billList.push({ name: "西班牙语/葡萄牙语多语种本土化包", price: `${symbol}${pLang.toLocaleString()}` });
+      }
+
+      if (state.addonTiktokMotionQty > 0) {
+        const ttSub = state.addonTiktokMotionQty * pTtMotion;
+        total += ttSub;
+        billList.push({ name: `TikTok 9:16 微动效广告卡片 x${state.addonTiktokMotionQty} 组`, price: `${symbol}${ttSub.toLocaleString()}` });
+      }
+
+      if (state.addonVi) {
+        total += pVi;
+        billList.push({ name: "品牌 Logo / VI 基础识别升级规范包", price: `${symbol}${pVi.toLocaleString()}` });
+      }
+
+      const html = `
+        <div class="calculator-container">
+          <!-- Left Options Panel -->
+          <div class="calc-box">
+            <div class="calc-title">
+              <span>🧮</span> GenSight 智能报价计算器
+            </div>
+
+            <!-- Currency Switcher -->
+            <div class="currency-switcher">
+              <button class="curr-btn ${selectedCurr === 'RMB' ? 'active' : ''}" onclick="switchCurrency('RMB')">
+                🇨🇳 国内商家报价 (RMB / ¥)
+              </button>
+              <button class="curr-btn ${selectedCurr === 'USD' ? 'active' : ''}" onclick="switchCurrency('USD')">
+                🌎 海外客户报价 (USD / $)
+              </button>
+            </div>
+
+            <!-- Section 1: Standard Packages -->
+            <div class="option-group">
+              <div class="group-label">一、 基础服务与 Listing 开款套餐</div>
+
+              <!-- Trial Package -->
+              <div class="item-card ${state.trial ? 'selected' : ''}" onclick="toggleState('trial')">
+                <div class="item-info">
+                  <div class="item-name">🧪 3套高 CTR 广告素材体验包</div>
+                  <div class="item-desc">诊断现有素材痛点 + 交付 3 套高 CTR 广告 KV (共 6 张图)，签约月包可全额抵扣。</div>
+                </div>
+                <div class="item-price">${symbol}${pTrial.toLocaleString()}</div>
+              </div>
+
+              <!-- Single SKU Package -->
+              <div class="item-card ${state.singleSkuQty > 0 ? 'selected' : ''}">
+                <div class="item-info">
+                  <div class="item-name">📦 单平台 Listing 全套开款包 (选定 1 SKU)</div>
+                  <div class="item-desc">1张白底主图 + 6张卖点/对比附图 + 1套 Banner/A+ (适用 Amazon/美客多/Shopee/SHEIN)。</div>
+                  <div class="qty-control" onclick="event.stopPropagation()">
+                    <span style="font-size: 13px; font-weight: 600;">SKU 数量：</span>
+                    <button class="qty-btn" onclick="changeSkuQty(-1)">-</button>
+                    <span class="qty-num">${state.singleSkuQty}</span>
+                    <button class="qty-btn" onclick="changeSkuQty(1)">+</button>
+                  </div>
+                </div>
+                <div class="item-price">${symbol}${pSku.toLocaleString()} / SKU</div>
+              </div>
+            </div>
+
+            <!-- Section 2: Retainer Packages -->
+            <div class="option-group">
+              <div class="group-label">二、 跨平台广告与素材代制作月包 (全包 Retainer)</div>
+
+              <div class="item-card ${state.monthlyTerm === 'month' ? 'selected' : ''}" onclick="setMonthlyTerm('month')">
+                <div class="item-info">
+                  <div class="item-name">🚀 跨平台素材包 (月付方案)</div>
+                  <div class="item-desc">每月 24 件/套核心素材：12套广告KV(共36张延伸图) + 4套Listing包 + 8组TikTok卡片。</div>
+                </div>
+                <div class="item-price">${symbol}${pMonth.toLocaleString()} / 月</div>
+              </div>
+
+              <div class="item-card ${state.monthlyTerm === 'quarter' ? 'selected' : ''}" onclick="setMonthlyTerm('quarter')">
+                <div class="item-info">
+                  <div class="item-name">🌟 跨平台素材包 (季签 - 推荐)</div>
+                  <div class="item-desc">按季度签署，包含全套 24 件/月素材量，资金使用率最高。</div>
+                </div>
+                <div class="item-price">${symbol}${pQuarter.toLocaleString()} / 季</div>
+              </div>
+
+              <div class="item-card ${state.monthlyTerm === 'halfyear' ? 'selected' : ''}" onclick="setMonthlyTerm('halfyear')">
+                <div class="item-info">
+                  <div class="item-name">👑 跨平台素材包 (半年签 - 专享价)</div>
+                  <div class="item-desc">长期品牌策略倾斜，享受最高折算优惠。</div>
+                </div>
+                <div class="item-price">${symbol}${pHalfyear.toLocaleString()} / 半年</div>
+              </div>
+            </div>
+
+            <!-- Section 3: Add-ons -->
+            <div class="option-group">
+              <div class="group-label">三、 高级增值选配服务 (Add-ons)</div>
+
+              <div class="item-card ${state.addonAplus ? 'selected' : ''}" onclick="toggleState('addonAplus')">
+                <div class="item-info">
+                  <div class="item-name">✨ 亚马逊 A+ 页面高级定制模块</div>
+                  <div class="item-desc">970x600 / 970x300 高保真大厂风格 A+ 模块设计。</div>
+                </div>
+                <div class="item-price">+${symbol}${pAplus.toLocaleString()}</div>
+              </div>
+
+              <div class="item-card ${state.addonMultiLang ? 'selected' : ''}" onclick="toggleState('addonMultiLang')">
+                <div class="item-info">
+                  <div class="item-name">🌮 西班牙语 / 葡萄牙语多语种本土化文案包</div>
+                  <div class="item-desc">专为美客多 (Mercado Libre) 拉美美墨巴站点定制的符合当地文化的文案。</div>
+                </div>
+                <div class="item-price">+${symbol}${pLang.toLocaleString()}</div>
+              </div>
+
+              <div class="item-card ${state.addonTiktokMotionQty > 0 ? 'selected' : ''}">
+                <div class="item-info">
+                  <div class="item-name">🎵 TikTok 9:16 微动效 / 动态广告封面卡片</div>
+                  <div class="item-desc">针对 TikTok 高 CTR 广告设计的带动态微效果封面图。</div>
+                  <div class="qty-control" onclick="event.stopPropagation()">
+                    <span style="font-size: 13px; font-weight: 600;">组数：</span>
+                    <button class="qty-btn" onclick="changeTtMotionQty(-1)">-</button>
+                    <span class="qty-num">${state.addonTiktokMotionQty}</span>
+                    <button class="qty-btn" onclick="changeTtMotionQty(1)">+</button>
+                  </div>
+                </div>
+                <div class="item-price">+${symbol}${pTtMotion.toLocaleString()} / 组</div>
+              </div>
+
+              <div class="item-card ${state.addonVi ? 'selected' : ''}" onclick="toggleState('addonVi')">
+                <div class="item-info">
+                  <div class="item-name">🎨 品牌 Logo / VI 基础识别升级规范包</div>
+                  <div class="item-desc">Logo 标志设计 + 标准色/标准字规范 + 基础应用物料。</div>
+                </div>
+                <div class="item-price">+${symbol}${pVi.toLocaleString()}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Bill Summary Sticky Box -->
+          <div class="summary-card">
+            <div class="bill-header">
+              <span>🧾 项目报价明细表</span>
+              <span style="font-size: 12px; color: var(--accent-blue); font-weight: 700;">GenSight 官方</span>
+            </div>
+
+            <div id="billItemsContainer">
+              ${billList.length === 0 ? '<div style="color: var(--text-muted); font-size: 13.5px; padding: 20px 0; text-align: center;">请在左侧勾选您需要的服务项目</div>' : ''}
+              ${billList.map(item => `
+                <div class="bill-item">
+                  <span>${item.name}</span>
+                  <span style="font-weight: 700;">${item.price}</span>
+                </div>
+              `).join('')}
+            </div>
+
+            ${discountText ? `<div class="discount-badge">${discountText}</div>` : ''}
+
+            <div class="bill-total-box">
+              <div class="bill-total-label">预估项目总额 (Estimated Total)</div>
+              <div class="bill-total-amount">${symbol}${total.toLocaleString()} <span style="font-size: 14px; font-weight: 600; color: var(--text-muted);">${unit}</span></div>
+            </div>
+
+            <div class="action-btn-group">
+              <button class="btn-action btn-primary" style="justify-content: center; padding: 12px; font-size: 14.5px;" onclick="copyBillSummary()">
+                📋 复制报价清单给客户
+              </button>
+              <button class="btn-action" style="justify-content: center; padding: 10px; font-size: 13.5px;" onclick="window.print()">
+                🖨️ 导出官方 PDF 报价单
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('docViewer').innerHTML = html;
+    }
+
+    function toggleState(key) {
+      state[key] = !state[key];
+      renderCalculatorUI();
+    }
+
+    function changeSkuQty(delta) {
+      state.singleSkuQty = Math.max(0, state.singleSkuQty + delta);
+      renderCalculatorUI();
+    }
+
+    function changeTtMotionQty(delta) {
+      state.addonTiktokMotionQty = Math.max(0, state.addonTiktokMotionQty + delta);
+      renderCalculatorUI();
+    }
+
+    function setMonthlyTerm(term) {
+      state.monthlyTerm = state.monthlyTerm === term ? 'none' : term;
+      renderCalculatorUI();
+    }
+
+    function copyBillSummary() {
+      const symbol = selectedCurr === 'RMB' ? '¥' : '$';
+      let text = `【GenSight 官方视觉素材代制作项目报价单】\n`;
+      text += `计价币种：${selectedCurr === 'RMB' ? '人民币 (RMB)' : '美金 (USD)'}\n`;
+      text += `----------------------------------\n`;
+      
+      let total = 0;
+      const pTrial = selectedCurr === 'RMB' ? 880 : 150;
+      const pSku = selectedCurr === 'RMB' ? 1680 : 280;
+      const pMonth = selectedCurr === 'RMB' ? 6800 : 1350;
+      const pQuarter = selectedCurr === 'RMB' ? 18800 : 3600;
+      const pHalfyear = selectedCurr === 'RMB' ? 33800 : 6500;
+
+      const pAplus = selectedCurr === 'RMB' ? 1200 : 200;
+      const pLang = selectedCurr === 'RMB' ? 800 : 130;
+      const pTtMotion = selectedCurr === 'RMB' ? 600 : 100;
+      const pVi = selectedCurr === 'RMB' ? 1980 : 320;
+
+      if (state.trial) { total += pTrial; text += `• 3套高CTR素材体验包 (共6张图): ${symbol}${pTrial.toLocaleString()}\n`; }
+      if (state.singleSkuQty > 0) { const sub = state.singleSkuQty * pSku; total += sub; text += `• 单平台 Listing 开款包 x${state.singleSkuQty} SKU: ${symbol}${sub.toLocaleString()}\n`; }
+      if (state.monthlyTerm === 'month') { total += pMonth; text += `• 跨平台素材包 (月付): ${symbol}${pMonth.toLocaleString()}\n`; }
+      if (state.monthlyTerm === 'quarter') { total += pQuarter; text += `• 跨平台素材包 (季签折扣): ${symbol}${pQuarter.toLocaleString()}\n`; }
+      if (state.monthlyTerm === 'halfyear') { total += pHalfyear; text += `• 跨平台素材包 (半年签专享): ${symbol}${pHalfyear.toLocaleString()}\n`; }
+
+      if (state.addonAplus) { total += pAplus; text += `• 亚马逊 A+ 页面高级定制模块: ${symbol}${pAplus.toLocaleString()}\n`; }
+      if (state.addonMultiLang) { total += pLang; text += `• 西/葡多语种本土化文案包: ${symbol}${pLang.toLocaleString()}\n`; }
+      if (state.addonTiktokMotionQty > 0) { const sub = state.addonTiktokMotionQty * pTtMotion; total += sub; text += `• TikTok 9:16 微动效广告卡片 x${state.addonTiktokMotionQty} 组: ${symbol}${sub.toLocaleString()}\n`; }
+      if (state.addonVi) { total += pVi; text += `• 品牌 Logo / VI 基础识别规范包: ${symbol}${pVi.toLocaleString()}\n`; }
+
+      text += `----------------------------------\n`;
+      text += `预估项目总额: ${symbol}${total.toLocaleString()}\n`;
+      text += `商务对接：Howard (GenSight 策略总监)`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("报价清单已成功复制到剪贴板！可直接粘贴发给客户微信或邮件。");
+      });
+    }
+
     function loadDoc(filename) {
       if (!docs[filename]) return;
       currentFile = filename;
+
+      document.getElementById('footerNav').style.display = 'flex';
 
       // Render Markdown
       const content = docs[filename];
@@ -765,6 +1267,10 @@
     }
 
     function copyMarkdown() {
+      if (currentFile === 'calculator') {
+        copyBillSummary();
+        return;
+      }
       const content = docs[currentFile];
       navigator.clipboard.writeText(content).then(() => {
         alert("Markdown 内容已成功复制到剪贴板！");
@@ -775,7 +1281,8 @@
     document.getElementById('searchInput').addEventListener('input', function(e) {
       const query = e.target.value.toLowerCase().trim();
       if (!query) {
-        loadDoc(currentFile);
+        if (currentFile === 'calculator') loadCalculator();
+        else loadDoc(currentFile);
         return;
       }
 
@@ -788,9 +1295,9 @@
       }
     });
 
-    // Initialize Theme and Document
+    // Initialize Theme and Default View (Calculator)
     initTheme();
-    loadDoc(currentFile);
+    loadCalculator();
   </script>
 </body>
 </html>
