@@ -26,15 +26,10 @@
     .status { color: var(--mint); font: 500 12px "DM Mono", monospace; letter-spacing: .04em; }
     .eyebrow { margin: 0 0 10px; color: var(--blue); font: 500 12px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
     .section-label { margin: 8px 0 14px; color: var(--muted); font: 500 12px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
-    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); align-items: start; gap: 28px; margin-top: 8px; }
-    nav { position: sticky; top: 18px; padding: 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); max-height: calc(100vh - 36px); overflow: auto; }
-    .nav-group { padding: 10px 6px 3px; color: var(--muted); font: 500 11px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
-    .nav-item { display: block; width: 100%; padding: 10px; border: 0; border-radius: 9px; color: var(--ink); background: transparent; cursor: pointer; text-align: left; }
-    .nav-item:hover, .nav-item.active { background: var(--soft-blue); color: var(--blue); }
-    .nav-item small { display: block; color: var(--muted); font-size: 11px; }
-    .view { min-height: 520px; }
-    #docView { display: none; padding: clamp(22px, 4vw, 46px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
-    #calcView { display: none; }
+    .main-content { min-height: 480px; }
+    #docView { display: none; padding: clamp(22px, 4vw, 46px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); margin-top: 8px; }
+    #calcView { display: none; margin-top: 8px; }
+    #sectionHub[hidden] { display: none; }
     .doc-meta { margin-bottom: 24px; color: var(--muted); font-size: 13px; }
     .doc-body h1 { font-size: 30px; } .doc-body h2 { margin-top: 38px; font-size: 21px; } .doc-body h3 { margin-top: 26px; font-size: 17px; }
     .doc-body p, .doc-body li { color: #374858; } .doc-body img { max-width: 100%; height: auto; border-radius: 12px; }
@@ -46,8 +41,6 @@
     footer { margin-top: 48px; color: var(--muted); font-size: 12px; text-align: center; }
     @media (max-width: 780px) {
       .shell { padding: 0 16px 42px; }
-      .layout { grid-template-columns: 1fr; }
-      nav { position: static; max-height: none; }
       header .status { display: none; }
     }
     /* Calculator scoped tokens */
@@ -98,10 +91,42 @@
     .feishu-note { font: 500 11px "DM Mono", monospace; color: #8fb4d4; margin-top: 8px; }
     .copy-template-btn { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 600; cursor: pointer; }
     .copy-template-btn:hover { border-color: var(--blue); color: var(--blue); }
-    .nav-home { border-bottom: 1px solid var(--line); margin-bottom: 6px; padding-bottom: 8px; }
-    .nav-home .nav-item { font-weight: 700; }
+    .muted-link { color: var(--muted); font-size: 13px; }
 
-    /* Calculator */
+    /* Top navigation */
+    .top-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--line); margin-bottom: 0; }
+    .top-tab { padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; transition: all .15s; }
+    .top-tab:hover { border-color: var(--blue); color: var(--blue); }
+    .top-tab.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .sub-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 0 16px; overflow-x: auto; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+    .sub-nav[hidden] { display: none; }
+    .sub-tab { flex: none; padding: 7px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .sub-tab:hover, .sub-tab.active { border-color: var(--blue); background: var(--soft-blue); color: var(--blue); }
+    .main-content { min-height: 480px; }
+    .playbook-quick { margin-top: 24px; padding-top: 8px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip-btn { padding: 10px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(16,42,67,.04); transition: all .15s; }
+    .chip-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--soft-blue); transform: translateY(-1px); }
+    .section-hub { padding: 28px 0 36px; }
+    .section-hub h2 { margin: 0 0 8px; font-size: 24px; }
+    .hub-lead { margin: 0 0 20px; color: var(--muted); font-size: 15px; }
+    .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .hub-card { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-align: left; cursor: pointer; transition: all .15s; }
+    .hub-card:hover { border-color: var(--blue); box-shadow: var(--shadow); }
+    .hub-card strong { font-size: 15px; color: var(--ink); }
+    .hub-card span:last-child { font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .hub-card-tag { font: 500 10px "DM Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); background: var(--soft-blue); padding: 3px 8px; border-radius: 6px; }
+
+    @media (max-width: 900px) {
+      .warroom-head, .metrics-row, .panels-row, .calculator-container { grid-template-columns: 1fr; }
+      .summary-card { position: static; }
+      .top-nav { gap: 6px; }
+      .top-tab { padding: 8px 14px; font-size: 13px; }
+      .hub-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .hub-grid { grid-template-columns: 1fr; }
+    }
     .calculator-container { display: grid; grid-template-columns: 1fr 380px; gap: 24px; }
     .calc-box, .summary-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
     .summary-card { border: 2px solid var(--blue); position: sticky; top: 18px; }
@@ -139,10 +164,7 @@
     .btn-primary { background: linear-gradient(135deg, #1565c0, #0284c7); border: none; color: #fff; font-weight: 700; }
     .btn-primary:hover { opacity: .95; }
 
-    @media (max-width: 900px) {
-      .warroom-head, .metrics-row, .panels-row, .calculator-container { grid-template-columns: 1fr; }
-      .summary-card { position: static; }
-    }
+    /* Calculator */
 
   </style>
 </head>
@@ -152,18 +174,16 @@
       <div class="brand"><span class="brand-mark">G</span><span>GenSight · 今日作战台</span></div>
       <span class="status">CROSS-BORDER VISUAL OPS · FEISHU SOURCE OF TRUTH</span>
     </header>
-    <main>
+    <nav id="topNav" class="top-nav" aria-label="主导航"></nav>
+    <nav id="subNav" class="sub-nav" aria-label="分类导航" hidden></nav>
+    <main class="main-content">
       <div id="warroom"></div>
-      <section class="layout">
-        <nav id="nav" aria-label="资料导航"></nav>
-        <div class="view">
-          <div id="calcView" aria-label="智能报价计算器"></div>
-          <article id="docView">
-            <div id="docMeta" class="doc-meta"></div>
-            <div id="docBody" class="doc-body"></div>
-          </article>
-        </div>
-      </section>
+      <div id="sectionHub" hidden></div>
+      <div id="calcView" aria-label="智能报价计算器"></div>
+      <article id="docView">
+        <div id="docMeta" class="doc-meta"></div>
+        <div id="docBody" class="doc-body"></div>
+      </article>
     </main>
     <footer>GenSight 内部作战台 · 协作状态以飞书为准 · 本站只读</footer>
   </div>
@@ -589,16 +609,40 @@ function renderCalculatorUI() {
 })();
 </script>
   <script>(() => {
-  const groupLabels = {
-    start: "今日必读",
-    do: "执行时打开",
-    tools: "工具",
-    reference: "战略参考",
-    archive: "历史归档",
+  const sectionMeta = {
+    warroom: { label: "作战台", groups: [] },
+    playbooks: { label: "执行手册", groups: ["start", "do"] },
+    tools: { label: "工具", groups: ["tools"] },
+    reference: { label: "战略参考", groups: ["reference"] },
+    archive: { label: "归档", groups: ["archive"] },
   };
 
-  let activeView = "warroom";
+  const groupLabels = {
+    start: "必读",
+    do: "执行",
+    tools: "工具",
+    reference: "战略",
+    archive: "归档",
+  };
+
+  const quickLinks = [
+    { file: "product-spec-and-pricing.md", label: "产品与报价" },
+    { file: "visual-portfolio-showcase.md", label: "Demo 与案例" },
+    { file: "__calculator__", label: "报价计算器", view: "calculator" },
+    { file: "daily-action-and-review-guide.md", label: "每日 SOP" },
+    { file: "07-conversion-loop.md", label: "获客 SOP" },
+    { file: "00-current-operating-baseline.md", label: "运营基线" },
+  ];
+
+  let activeSection = "warroom";
   let activeFile = null;
+
+  function sectionForItem(item) {
+    for (const [key, meta] of Object.entries(sectionMeta)) {
+      if (meta.groups.includes(item.group)) return key;
+    }
+    return "playbooks";
+  }
 
   function feishuUrl(tableKey) {
     const base = siteConfig.feishu?.baseUrl || "";
@@ -615,25 +659,33 @@ function renderCalculatorUI() {
     const owner = siteConfig.weeklyGoalOwner || "";
     const due = siteConfig.weeklyGoalDue || "";
     const baseUrl = siteConfig.feishu?.baseUrl || "";
-    const setupNote = siteConfig.feishu?.setupNote || "配置 portal/site-config.json 后重建站点";
 
     const metricsHtml = (siteConfig.metrics || [])
       .map((m) => {
         const url = feishuUrl(m.table);
         const link = url
           ? `<a href="${url}" target="_blank" rel="noreferrer">在飞书填写 →</a>`
-          : `<button type="button" class="linkish" disabled title="${setupNote}">先配置飞书链接</button>`;
+          : `<span class="muted-link">链接未配置</span>`;
         return `<article class="metric-card"><div class="label">${m.label}</div><h3>—</h3><p>${m.hint}</p>${link}</article>`;
       })
       .join("");
 
-    const tables = siteConfig.feishu?.tables || {};
-    const tableButtons = Object.entries(tables)
-      .map(([key, t]) => {
+    const tableButtons = ["dailyTasks", "handoff", "leads", "eveningReview"]
+      .map((key) => {
+        const t = siteConfig.feishu?.tables?.[key];
+        if (!t) return "";
         const url = feishuUrl(key);
-        const cls = url ? "feishu-btn" : "feishu-btn disabled";
-        const href = url || "#";
-        return `<a class="${cls}" href="${href}" target="_blank" rel="noreferrer">${t.code} ${t.label}</a>`;
+        if (!url) return "";
+        return `<a class="feishu-btn" href="${url}" target="_blank" rel="noreferrer">${t.code} ${t.label}</a>`;
+      })
+      .join("");
+
+    const quickHtml = quickLinks
+      .map((link) => {
+        if (link.view === "calculator") {
+          return `<button type="button" class="chip-btn" data-action="calculator">${link.label}</button>`;
+        }
+        return `<button type="button" class="chip-btn" data-file="${link.file}">${link.label}</button>`;
       })
       .join("");
 
@@ -643,7 +695,7 @@ function renderCalculatorUI() {
           <div>
             <p class="eyebrow">今日作战台 · Howard & Brian</p>
             <h1>打开这里，开始今天的工作。</h1>
-            <p class="warroom-lead">任务、线索、成交与复盘以飞书为准。本站只回答：本周目标是什么、今天优先做什么、需要时去哪查 SOP 与报价。</p>
+            <p class="warroom-lead">任务、线索、成交与复盘以飞书为准。需要 SOP 或报价时，用下方按钮或顶部导航打开。</p>
           </div>
           <aside class="goal-card">
             <strong>本周唯一目标</strong>
@@ -651,40 +703,33 @@ function renderCalculatorUI() {
             <div class="goal-meta">${owner ? `负责人 ${owner}` : ""}${due ? ` · 截止 ${due}` : ""}</div>
           </aside>
         </div>
-        <p class="section-label">关键数字 · 在飞书维护权威状态</p>
+        <p class="section-label">关键数字 · 在飞书维护</p>
         <div class="metrics-row">${metricsHtml}</div>
         <div class="panels-row">
           <article class="panel">
-            <h3>今日 Top 3（写在飞书 T04）</h3>
-            <p>晨会各确认 1–3 项，必须可验收。复制模板到飞书填写，本站不保存。</p>
-            <ol>
-              <li>Howard：有效触达 / 询盘跟进 / Brief</li>
-              <li>Brian：对比卡 / Listing 交付 / Prompt 沉淀</li>
-              <li>共同：阻塞项解除或升级</li>
-            </ol>
+            <h3>今日 Top 3（飞书 T04）</h3>
+            <p>晨会各确认 1–3 项可验收输出。</p>
             <button type="button" class="copy-template-btn" id="copyTop3">复制 Top 3 模板</button>
           </article>
           <article class="panel">
-            <h3>当前阻塞（写在飞书 T01）</h3>
-            <p>状态 = 被阻塞 的任务必须在晨会读出。复制模板记录原因与解除条件。</p>
-            <ol>
-              <li>阻塞任务：</li>
-              <li>原因：</li>
-              <li>解除条件 / 负责人：</li>
-            </ol>
+            <h3>当前阻塞（飞书 T01）</h3>
+            <p>被阻塞任务必须在晨会读出。</p>
             <button type="button" class="copy-template-btn" id="copyBlocker">复制阻塞项模板</button>
           </article>
         </div>
         <section class="feishu-bar">
           <div>
-            <h2>飞书多维表格 · 唯一协作数据源</h2>
-            <p>GitHub Pages 不保存任务或客户数据。${baseUrl ? "点击下方进入对应表。" : setupNote}</p>
-            ${baseUrl ? "" : `<div class="feishu-note">编辑 portal/site-config.json → python3 build_opc_html.py</div>`}
+            <h2>飞书 · 唯一协作数据源</h2>
+            <p>本站不保存任务或客户数据。</p>
           </div>
           <div class="feishu-actions">
-            ${baseUrl ? `<a class="feishu-btn primary" href="${baseUrl}" target="_blank" rel="noreferrer">打开飞书 Base</a>` : ""}
+            ${baseUrl ? `<a class="feishu-btn primary" href="${baseUrl}" target="_blank" rel="noreferrer">打开 Base</a>` : ""}
             ${tableButtons}
           </div>
+        </section>
+        <section class="playbook-quick">
+          <p class="section-label">按需打开 · 常用资料</p>
+          <div class="chip-row">${quickHtml}</div>
         </section>
       </section>`;
 
@@ -697,66 +742,138 @@ function renderCalculatorUI() {
       const text = `【阻塞项 — 写入飞书 T01】\n任务：\n阻塞原因：\n解除条件：\n负责人：\n期望解除日：`;
       navigator.clipboard.writeText(text).then(() => alert("阻塞项模板已复制，请粘贴到飞书。"));
     });
+    el.querySelectorAll(".chip-btn[data-file]").forEach((btn) =>
+      btn.addEventListener("click", () => openDocument(btn.dataset.file))
+    );
+    el.querySelectorAll('.chip-btn[data-action="calculator"]').forEach((btn) =>
+      btn.addEventListener("click", showCalculator)
+    );
   }
 
-  function buildNav() {
-    const nav = document.getElementById("nav");
-    nav.innerHTML = "";
+  function buildTopNav() {
+    const topNav = document.getElementById("topNav");
+    topNav.innerHTML = "";
+    for (const [key, meta] of Object.entries(sectionMeta)) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "top-tab";
+      btn.dataset.section = key;
+      btn.textContent = meta.label;
+      btn.addEventListener("click", () => {
+        if (key === "warroom") showWarroom();
+        else showSection(key);
+      });
+      topNav.appendChild(btn);
+    }
+  }
 
-    const homeBtn = document.createElement("button");
-    homeBtn.className = "nav-item nav-home";
-    homeBtn.innerHTML = `今日作战台<small>本周目标 · Top 3 · 飞书入口</small>`;
-    homeBtn.addEventListener("click", showWarroom);
-    nav.appendChild(homeBtn);
-
-    for (const group of ["start", "do", "tools", "reference", "archive"]) {
-      nav.insertAdjacentHTML("beforeend", `<div class="nav-group">${groupLabels[group]}</div>`);
+  function buildSubNav(section) {
+    const subNav = document.getElementById("subNav");
+    subNav.innerHTML = "";
+    if (section === "warroom") {
+      subNav.hidden = true;
+      return;
+    }
+    subNav.hidden = false;
+    const groups = sectionMeta[section].groups;
+    for (const group of groups) {
       manifest
         .filter((item) => item.group === group)
         .forEach((item) => {
-          const button = document.createElement("button");
-          button.className = "nav-item";
-          button.dataset.file = item.file;
-          button.innerHTML = `${item.title}<small>${item.description}</small>`;
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "sub-tab";
+          btn.dataset.file = item.file;
+          btn.textContent = item.title;
+          btn.title = item.description;
           if (item.view === "calculator") {
-            button.addEventListener("click", showCalculator);
+            btn.addEventListener("click", showCalculator);
           } else {
-            button.addEventListener("click", () => openDocument(item.file));
+            btn.addEventListener("click", () => openDocument(item.file));
           }
-          nav.append(button);
+          subNav.appendChild(btn);
         });
     }
   }
 
-  function setActiveNav(fileOrView) {
-    document.querySelectorAll(".nav-item").forEach((btn) => {
-      const match = fileOrView === "warroom" ? btn.classList.contains("nav-home") : btn.dataset.file === fileOrView;
-      btn.classList.toggle("active", match);
+  function renderSectionHub(section) {
+    const hub = document.getElementById("sectionHub");
+    const groups = sectionMeta[section].groups;
+    const cards = manifest.filter((item) => groups.includes(item.group));
+    hub.innerHTML = `
+      <section class="section-hub">
+        <h2>${sectionMeta[section].label}</h2>
+        <p class="hub-lead">选择要打开的资料，或使用上方标签快速切换。</p>
+        <div class="hub-grid">
+          ${cards
+            .map(
+              (item) => `
+            <button type="button" class="hub-card" data-file="${item.file}" data-view="${item.view || ""}">
+              <span class="hub-card-tag">${groupLabels[item.group] || item.group}</span>
+              <strong>${item.title}</strong>
+              <span>${item.description}</span>
+            </button>`
+            )
+            .join("")}
+        </div>
+      </section>`;
+    hub.querySelectorAll(".hub-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        if (card.dataset.view === "calculator") showCalculator();
+        else openDocument(card.dataset.file);
+      });
     });
   }
 
-  function showWarroom() {
-    activeView = "warroom";
-    activeFile = null;
-    document.getElementById("warroom").style.display = "block";
+  function setActiveNav() {
+    document.querySelectorAll(".top-tab").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.section === activeSection);
+    });
+    document.querySelectorAll(".sub-tab").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.file === activeFile);
+    });
+  }
+
+  function hideAllViews() {
+    document.getElementById("warroom").style.display = "none";
+    document.getElementById("sectionHub").hidden = true;
     document.getElementById("docView").style.display = "none";
     document.getElementById("calcView").style.display = "none";
-    setActiveNav("warroom");
+  }
+
+  function showWarroom() {
+    activeSection = "warroom";
+    activeFile = null;
+    hideAllViews();
+    document.getElementById("warroom").style.display = "block";
+    buildSubNav("warroom");
+    setActiveNav();
     window.location.hash = "";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function showSection(section) {
+    activeSection = section;
+    activeFile = null;
+    hideAllViews();
+    buildSubNav(section);
+    const hub = document.getElementById("sectionHub");
+    hub.hidden = false;
+    renderSectionHub(section);
+    setActiveNav();
+    window.location.hash = section;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   function showCalculator() {
-    activeView = "calculator";
+    activeSection = "tools";
     activeFile = "__calculator__";
-    document.getElementById("warroom").style.display = "none";
-    document.getElementById("docView").style.display = "none";
+    hideAllViews();
+    buildSubNav("tools");
     const calc = document.getElementById("calcView");
     calc.style.display = "block";
-    setActiveNav("__calculator__");
-    if (window.GensightCalculator) {
-      window.GensightCalculator.mount(calc);
-    }
+    if (window.GensightCalculator) window.GensightCalculator.mount(calc);
+    setActiveNav();
     window.location.hash = "calculator";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -764,10 +881,10 @@ function renderCalculatorUI() {
   function openDocument(file) {
     const item = manifest.find((doc) => doc.file === file);
     if (!item || !docs[file]) return;
-    activeView = "doc";
+    activeSection = sectionForItem(item);
     activeFile = file;
-    document.getElementById("warroom").style.display = "none";
-    document.getElementById("calcView").style.display = "none";
+    hideAllViews();
+    buildSubNav(activeSection);
     document.getElementById("docView").style.display = "block";
     document.querySelector("#docMeta").textContent = `${item.title} · ${item.description}`;
     document.querySelector("#docBody").innerHTML = marked.parse(docs[file]);
@@ -777,7 +894,7 @@ function renderCalculatorUI() {
         openDocument(link.dataset.docLink);
       })
     );
-    setActiveNav(file);
+    setActiveNav();
     window.location.hash = file;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -796,11 +913,12 @@ function renderCalculatorUI() {
   };
   marked.setOptions({ renderer });
 
-  buildNav();
+  buildTopNav();
   renderWarroom();
 
   const hash = decodeURIComponent(window.location.hash.slice(1));
   if (hash === "calculator") showCalculator();
+  else if (sectionMeta[hash]) showSection(hash);
   else if (docs[hash]) openDocument(hash);
   else showWarroom();
 })();

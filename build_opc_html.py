@@ -202,15 +202,10 @@ def build_html(docs: dict[str, str], site_config: dict) -> str:
     .status {{ color: var(--mint); font: 500 12px "DM Mono", monospace; letter-spacing: .04em; }}
     .eyebrow {{ margin: 0 0 10px; color: var(--blue); font: 500 12px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }}
     .section-label {{ margin: 8px 0 14px; color: var(--muted); font: 500 12px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }}
-    .layout {{ display: grid; grid-template-columns: 280px minmax(0, 1fr); align-items: start; gap: 28px; margin-top: 8px; }}
-    nav {{ position: sticky; top: 18px; padding: 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); max-height: calc(100vh - 36px); overflow: auto; }}
-    .nav-group {{ padding: 10px 6px 3px; color: var(--muted); font: 500 11px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }}
-    .nav-item {{ display: block; width: 100%; padding: 10px; border: 0; border-radius: 9px; color: var(--ink); background: transparent; cursor: pointer; text-align: left; }}
-    .nav-item:hover, .nav-item.active {{ background: var(--soft-blue); color: var(--blue); }}
-    .nav-item small {{ display: block; color: var(--muted); font-size: 11px; }}
-    .view {{ min-height: 520px; }}
-    #docView {{ display: none; padding: clamp(22px, 4vw, 46px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }}
-    #calcView {{ display: none; }}
+    .main-content {{ min-height: 480px; }}
+    #docView {{ display: none; padding: clamp(22px, 4vw, 46px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); margin-top: 8px; }}
+    #calcView {{ display: none; margin-top: 8px; }}
+    #sectionHub[hidden] {{ display: none; }}
     .doc-meta {{ margin-bottom: 24px; color: var(--muted); font-size: 13px; }}
     .doc-body h1 {{ font-size: 30px; }} .doc-body h2 {{ margin-top: 38px; font-size: 21px; }} .doc-body h3 {{ margin-top: 26px; font-size: 17px; }}
     .doc-body p, .doc-body li {{ color: #374858; }} .doc-body img {{ max-width: 100%; height: auto; border-radius: 12px; }}
@@ -222,8 +217,6 @@ def build_html(docs: dict[str, str], site_config: dict) -> str:
     footer {{ margin-top: 48px; color: var(--muted); font-size: 12px; text-align: center; }}
     @media (max-width: 780px) {{
       .shell {{ padding: 0 16px 42px; }}
-      .layout {{ grid-template-columns: 1fr; }}
-      nav {{ position: static; max-height: none; }}
       header .status {{ display: none; }}
     }}
 {portal_css}
@@ -235,18 +228,16 @@ def build_html(docs: dict[str, str], site_config: dict) -> str:
       <div class="brand"><span class="brand-mark">G</span><span>GenSight · 今日作战台</span></div>
       <span class="status">CROSS-BORDER VISUAL OPS · FEISHU SOURCE OF TRUTH</span>
     </header>
-    <main>
+    <nav id="topNav" class="top-nav" aria-label="主导航"></nav>
+    <nav id="subNav" class="sub-nav" aria-label="分类导航" hidden></nav>
+    <main class="main-content">
       <div id="warroom"></div>
-      <section class="layout">
-        <nav id="nav" aria-label="资料导航"></nav>
-        <div class="view">
-          <div id="calcView" aria-label="智能报价计算器"></div>
-          <article id="docView">
-            <div id="docMeta" class="doc-meta"></div>
-            <div id="docBody" class="doc-body"></div>
-          </article>
-        </div>
-      </section>
+      <div id="sectionHub" hidden></div>
+      <div id="calcView" aria-label="智能报价计算器"></div>
+      <article id="docView">
+        <div id="docMeta" class="doc-meta"></div>
+        <div id="docBody" class="doc-body"></div>
+      </article>
     </main>
     <footer>GenSight 内部作战台 · 协作状态以飞书为准 · 本站只读</footer>
   </div>
