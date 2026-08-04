@@ -664,10 +664,14 @@ html_template = f"""<!DOCTYPE html>
 </html>
 """
 
+# Write to root index.html, opc-dashboard.html and opc-doc/index.html
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html_template)
+
 with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated opc-dashboard.html and opc-doc/index.html successfully!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html successfully!")
