@@ -346,12 +346,14 @@ html_template = f"""<!DOCTYPE html>
       border: 1px solid var(--border-color);
       background: var(--bg-card);
       position: relative;
+      min-height: 240px;
     }}
 
     .banner-img {{
       width: 100%;
-      height: 240px;
+      height: 320px;
       object-fit: cover;
+      object-position: center;
       display: block;
     }}
 
@@ -360,8 +362,8 @@ html_template = f"""<!DOCTYPE html>
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-      padding: 20px 24px 16px;
+      background: linear-gradient(0deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0) 100%);
+      padding: 24px 28px 20px;
       color: #ffffff;
     }}
 
@@ -371,14 +373,15 @@ html_template = f"""<!DOCTYPE html>
       display: flex;
       align-items: center;
       gap: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }}
 
     .banner-subtitle {{
-      font-size: 13px;
-      opacity: 0.9;
-      margin-top: 4px;
+      font-size: 13.5px;
+      opacity: 0.95;
+      margin-top: 6px;
       font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }}
 
     /* KPI Summary Row */
@@ -433,19 +436,6 @@ html_template = f"""<!DOCTYPE html>
       padding: 40px 48px;
       box-shadow: var(--shadow-card);
       transition: background-color 0.3s, border-color 0.3s;
-    }}
-
-    /* WaytoAGI / Feishu Callout Box */
-    .waytoagi-callout {{
-      background: var(--callout-bg);
-      border-left: 4px solid var(--callout-border);
-      color: var(--callout-text);
-      padding: 16px 20px;
-      border-radius: 0 12px 12px 0;
-      margin: 20px 0;
-      font-size: 14.5px;
-      font-weight: 500;
-      line-height: 1.7;
     }}
 
     /* Markdown Styling */
@@ -679,9 +669,12 @@ html_template = f"""<!DOCTYPE html>
     <!-- Main Content Area -->
     <main class="content-area">
 
-      <!-- Panoramic WaytoAGI Style Header Banner -->
+      <!-- Panoramic WaytoAGI Style Header Banner (With Multi-fallback src) -->
       <div class="banner-container">
-        <img class="banner-img" src="gensight_roadmap_banner.png" alt="GenSight Panoramic Roadmap Banner">
+        <img id="bannerImg" class="banner-img" 
+             src="gensight_wide_banner.png" 
+             alt="GenSight Panoramic Roadmap Banner"
+             onerror="if(this.src.indexOf('gensight_wide_banner.png')!==-1){{this.src='gensight_roadmap_banner.png';}}else{{this.src='assets/gensight_roadmap_banner.png';}}">
         <div class="banner-overlay">
           <div class="banner-title">
             🌈 通往 GenSight 出海独立站与 AI 品牌之路
@@ -857,4 +850,4 @@ with open('opc-dashboard.html', 'w', encoding='utf-8') as f:
 with open('opc-doc/index.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Light/Dark Theme & Banner!")
+print("Generated index.html, opc-dashboard.html and opc-doc/index.html with Wide Banner and Multi-fallback!")
