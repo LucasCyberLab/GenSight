@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元晟传媒 · OPC 一人企业工作台与出海独立站规划中心</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-card: rgba(21, 30, 47, 0.75);
+      --bg-sidebar: #0f1624;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent-cyan: #00f2fe;
+      --accent-purple: #8b5cf6;
+      --accent-green: #10b981;
+      --accent-gold: #f59e0b;
+      --sidebar-width: 320px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(15, 22, 36, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+    }
+
+    .title-text {
+      font-size: 17px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .search-box {
+      position: relative;
+      width: 320px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 8px 16px 8px 36px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-cyan);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-cyan);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
+      border: none;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 14px rgba(0, 242, 254, 0.4);
+    }
+
+    /* Main Container */
+    .app-container {
+      display: flex;
+      width: 100%;
+      height: calc(100vh - 64px);
+      margin-top: 64px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 16px 12px;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin: 16px 8px 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 4px;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(139, 92, 246, 0.15));
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .nav-item .icon {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background: var(--bg-dark);
+      padding: 24px 36px 60px;
+    }
+
+    /* KPI Summary Cards */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px 20px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 4px;
+    }
+
+    .kpi-sub {
+      font-size: 11.5px;
+      color: var(--accent-cyan);
+      margin-top: 2px;
+    }
+
+    /* Article Card / Markdown Container */
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px 44px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Markdown Styling */
+    .markdown-body {
+      color: #e2e8f0;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .markdown-body h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(0, 242, 254, 0.2);
+      color: #ffffff;
+      background: linear-gradient(90deg, #ffffff, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .markdown-body h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .markdown-body h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      color: #f1f5f9;
+    }
+
+    .markdown-body p {
+      margin-bottom: 16px;
+      color: #cbd5e1;
+    }
+
+    .markdown-body blockquote {
+      border-left: 4px solid var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.05);
+      padding: 14px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+      color: #e0f2fe;
+      font-style: normal;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .markdown-body th {
+      background: rgba(30, 41, 59, 0.9);
+      color: var(--accent-cyan);
+      font-weight: 700;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .markdown-body td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(15, 23, 42, 0.4);
+      color: #cbd5e1;
+    }
+
+    .markdown-body tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .markdown-body ul, .markdown-body ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .markdown-body li {
+      margin-bottom: 6px;
+      color: #cbd5e1;
+    }
+
+    .markdown-body code {
+      background: rgba(255, 255, 255, 0.1);
+      color: #38bdf8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 13.5px;
+    }
+
+    .markdown-body pre {
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    .markdown-body pre code {
+      background: none;
+      padding: 0;
+      color: #e2e8f0;
+    }
+
+    /* Nav Buttons at bottom of doc */
+    .doc-footer-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sidebar {
+        position: fixed;
+        left: -320px;
+        top: 64px;
+        bottom: 0;
+        z-index: 90;
+        transition: left 0.3s;
+      }
+      .sidebar.open {
+        left: 0;
+      }
+      .content-area {
+        padding: 16px;
+      }
+      .search-box {
+        width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="logo-group">
+      <div class="logo-badge">OPC WORKBENCH</div>
+      <div class="title-text">元晟传媒 · OPC 一人企业工作台与出海独立站规划中心</div>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="搜索 OPC 文档、SOP、报价或逻辑...">
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-action" onclick="copyMarkdown()">📋 复制 MD</button>
+      <button class="btn-action btn-primary" onclick="window.print()">🖨️ 打印 / 导出 PDF</button>
+    </div>
+  </header>
+
+  <!-- App Body -->
+  <div class="app-container">
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-section-title">🚀 战略总纲 (Master Plan)</div>
+      <div class="nav-item active" data-file="05-crossborder-opc-master-plan.md" onclick="loadDoc('05-crossborder-opc-master-plan.md')">
+        <span class="icon">🎯</span> 05. OPC 运营方案总纲
+      </div>
+
+      <div class="nav-section-title">📋 战略建盘 (OPC Foundation)</div>
+      <div class="nav-item" data-file="01-resource-audit.md" onclick="loadDoc('01-resource-audit.md')">
+        <span class="icon">📊</span> 01. 资源盘点
+      </div>
+      <div class="nav-item" data-file="02-niche-positioning.md" onclick="loadDoc('02-niche-positioning.md')">
+        <span class="icon">🏹</span> 02. 利基定位重塑
+      </div>
+      <div class="nav-item" data-file="03-value-proposition.md" onclick="loadDoc('03-value-proposition.md')">
+        <span class="icon">💡</span> 03. 价值主张设计
+      </div>
+      <div class="nav-item" data-file="04-business-model.md" onclick="loadDoc('04-business-model.md')">
+        <span class="icon">📐</span> 04. 精益商业模式
+      </div>
+      <div class="nav-item" data-file="06-mvp-design.md" onclick="loadDoc('06-mvp-design.md')">
+        <span class="icon">🧪</span> 06. MVP 验证设计
+      </div>
+      <div class="nav-item" data-file="07-conversion-loop.md" onclick="loadDoc('07-conversion-loop.md')">
+        <span class="icon">🔄</span> 07. 转化闭环 SOP
+      </div>
+
+      <div class="nav-section-title">💎 产品与报价 (Product & Pricing)</div>
+      <div class="nav-item" data-file="product-spec-and-pricing.md" onclick="loadDoc('product-spec-and-pricing.md')">
+        <span class="icon">💰</span> 产品手册与报价单
+      </div>
+
+      <div class="nav-section-title">🛠️ 学习与 SOP (SOP & Roadmap)</div>
+      <div class="nav-item" data-file="learning-and-sop-roadmap.md" onclick="loadDoc('learning-and-sop-roadmap.md')">
+        <span class="icon">📚</span> 7天学习计划与协同SOP
+      </div>
+
+      <div class="nav-section-title">💡 Demo 样板策略 (Demo Strategy)</div>
+      <div class="nav-item" data-file="demo-case-blueprint.md" onclick="loadDoc('demo-case-blueprint.md')">
+        <span class="icon">⚡</span> 首个 Demo 样板思考
+      </div>
+
+      <div class="nav-section-title">📚 总体索引 (Overview)</div>
+      <div class="nav-item" data-file="README.md" onclick="loadDoc('README.md')">
+        <span class="icon">📖</span> OPC 文档库说明
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Top KPI Row -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">项目阶段</div>
+          <div class="kpi-value" style="color: var(--accent-cyan);">出海独立站全案</div>
+          <div class="kpi-sub">建盘期完成 ➔ 运营执行阶段</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">主力产品定价</div>
+          <div class="kpi-value" style="color: var(--accent-gold);">¥19.8K ~ ¥39.8K</div>
+          <div class="kpi-sub">Shopify / WP 独立站起飞全案</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">长期 LTV 续费</div>
+          <div class="kpi-value" style="color: var(--accent-green);">¥5,680 / 月</div>
+          <div class="kpi-sub">海外广告视觉与素材代制作包</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">团队协同分工</div>
+          <div class="kpi-value" style="color: var(--accent-purple);">Howard & Brian</div>
+          <div class="kpi-sub">商业策略+英文Copy & 欧美视觉</div>
+        </div>
+      </div>
+
+      <!-- Document Content Card -->
+      <div class="doc-card">
+        <div id="docViewer" class="markdown-body">
+          <!-- Rendered Markdown will appear here -->
+        </div>
+
+        <!-- Footer Page Navigation -->
+        <div class="doc-footer-nav">
+          <button id="prevBtn" class="btn-action" onclick="prevDoc()">← 上一文档</button>
+          <button id="nextBtn" class="btn-action btn-primary" onclick="nextDoc()">下一文档 →</button>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    const docs = {"01-resource-audit.md": "# 元晟传媒 (Gensight) - OPC 01 资源盘点\n\n> 状态：已完成梳理 (已根据 Gensight 项目基线文件 00~18 自动对齐)  \n> 责任人：Howard + Brian  \n\n---\n\n## 1. 团队与个人资源盘点（8 大维度）\n\n| 维度 | Gensight 现状与优势 | 约束与边界 |\n|---|---|---|\n| **1. 技能与专业深度** | **Howard**：策略制定、文案策划、AI 提效应用、品牌架构、SOP与流程设计；<br>**Brian**：视觉设计、美工制作、物料延展、设计落地。 | 团队仅 2 人，需高度自动化与模板化，不能陷入低单价、重复劳作的劳动密集型纠缠。 |\n| **2. 认知与行业经验** | 拥有品牌策略、视觉设计、广告 KV、PPT 汇报、商业效果图、多淼本地制作合作经验。 | 8 月前公司未正式注册完成，7 月以个人/个体账号形式过渡运营。 |\n| **3. 现有资产与案例** | 半间茶舍、汇泽万帮、文家姑娘、米兰坊、铺宝宝、讲宪法等实战案例资产及对外标准报价单。 | 部分政务及渠道案例存在脱敏要求，需制作脱敏版案例库与视觉样板。 |\n| **4. 新杠杆 (AI 提效)** | 使用 Midjourney / Stable Diffusion / Flux / AI 辅助排版与营销文案生成，设计效能提升 3~5 倍。 | 对外定位为「策略先于执行，专业驾驭效能」，不卖低端 AI 无脑贴图，不主推企业 AI 咨询。 |\n| **5. 渠道与触达能力** | 小红书（视觉/自媒体）、闲鱼（高频搜索/体验款）、微信朋友圈（熟人/转介绍）、多淼渠道（苏州本地制作）。 | 公众号等企业账号需待 8 月公司注册完成后开启；目前缺乏高并发投流预算。 |\n| **6. 资金与风险承受** | 精益轻资产启动，无需大额固定资产投入；Mac + 协同开发与飞书多维表格降本增效。 | 90 天内需快速产生稳定现金流，支撑公司注册与团队基础运营。 |\n| **7. 合作生态** | 与「多淼」保持战略合作（提供线下制作、安装、空间落地支持），具备线上线上联合交付能力。 | 独立设计业务与多淼联合业务边界需划分清晰（独立业务自负盈亏，联合业务明晰主导权）。 |\n| **8. 时间与精力分布** | 两人全职协同；Howard主导策略、文案与运营，Brian主导视觉设计与物料出图。 | 两人每日工作须严格依据协同工作台/飞书表格推进，杜绝内耗与无效沟通。 |\n\n---\n\n## 2. 结论与下一步\n\n- **核心竞争力**：AI 提效加持下的高品质策略型品牌设计交付能力。\n- **下一 OPC 阶段**：`02-niche-positioning`（利基定位）— 锁定 5 类核心业务与三环叠加切入点。\n", "02-niche-positioning.md": "# 元晟传媒 (Gensight) - OPC 02 利基定位重塑 (出海独立站全案方向)\n\n> 状态：2026-08 最新战略调整版本  \n> 核心原则：**放弃低价单一渠道外包 & 放弃高长重企AI落地，重塑出海独立站高溢价全案**  \n\n---\n\n## 1. 现状痛点与战略避坑诊断\n\n1. **陷阱 A：单一广告商渠道代图外包**\n   - **症状**：只给 1 家渠道广告商做图片和方案，议价权极低，被当做廉价代工美工，收费极低，无利润与复用资产。\n   - **破局**：断绝纯代工定位，转向独立面向终端高客单直客。\n\n2. **陷阱 B：企业 AI 落地咨询**\n   - **症状**：各大厂商 AI 智能工具全面普及普及化；企业 AI 落地项目决策链极长、交付重、效果显现慢、难以标准化测量 ROI、极难取费。\n   - **破局**：将 AI 退格为内部 3~5 倍提效工具，不在前端作为主推产品兜售概念。\n\n3. **新方向机会与陷阱：出海独立站搭建**\n   - **机会**：工贸一体工厂、外贸企业、国内 D2C 品牌出海需求强劲，变现路径直接，客户愿意为能带来海外订单的站点付费。\n   - **陷阱**：若陷入“纯技术建站”（如淘宝/Fiverr 500元装模板），团队技术不熟且重落入低价竞争。\n   - **Gensight 不竞争解法**：**卖“策略+英文品牌包装+视觉呈现+独立站搭建”高溢价全案，不卖纯代码建站！**\n\n---\n\n## 2. 三环叠加分析 (Three Circles Analysis - 升级版)\n\n```\n              [ 兴趣/热情/AI优势 ]\n            ( 出海品牌视觉 + AI高效建站 )\n                   /        \\\n                  /          \\\n[ Howard25年高管/商业策略 + Brian视觉 ] --- [ 出海商家极强的海外获客与高客单付费意愿 ]\n```\n\n1. **Howard核心能力**：25 年 COO / 渠道总监 / 商业策略背景，擅长 B2B 高客单沟通、英文品牌策略、商业模型拆解与 AI Agent 自动化流程。\n2. **Brian核心能力**：视觉设计、AI 图片生成 (MJ/SD/Flux)、网页与 UI 审美。\n3. **技术路线选择**：无需从零学习底层代码开发！全面采用 **Shopify / WordPress (Elementor) / Shoplazza** 等 No-Code 工具，结合 AI 批量生成符合欧美审美的英文 Copywriting 与视觉素材。\n\n---\n\n## 3. 重构后的产品与服务梯队\n\n| 梯队 | 产品名称 | 服务内容 | 目标定价 | 交付周期 |\n|---|---|---|---|---|\n| **流量引流包 (MVP)** | **出海独立站诊断与升级方案** | 诊断客户现有官网/独立站的审美漏洞、英文文案硬伤与转化率瓶颈，给出 10 页改善报告。 | ¥1,980 | 2 天 |\n| **主力现金流包** | **出海品牌 Shopify/WP 独立站标准包** | 英文品牌视觉 VI + 独立站全站 No-Code 搭建 + 5 大核心页面 + 10 款产品 AI 场景精修 + 支付物流集成。 | ¥19,800 | 7~10 天 |\n| **高阶旗舰全案** | **出海品牌独立站起飞全案** | 出海品牌策略定位 + 独立站搭建 + 欧美本地化英文 Copywriting + Meta/TikTok 广告视觉包 (10套 Banner/短视频素材)。 | ¥39,800 | 14 天 |\n| **长期续费项** | **海外广告视觉与素材月包** | 每月定额交付 15~20 套用于海外投流与社交媒体的精修视觉与视频素材。 | ¥5,680 / 月 | 月度持续 |\n\n---\n\n## 4. 下一步\n\n- **下一 OPC 阶段**：`03-value-proposition` 与 `07-conversion-loop` 获客路径重构。\n", "03-value-proposition.md": "# 元晟传媒 (Gensight) - OPC 03 价值主张\n\n> 状态：已完成梳理  \n> 核心分析工具：**客户价值主张画布 (Value Proposition Canvas)**  \n\n---\n\n## 1. 客户 Profile 拆解\n\n### 目标客户群：中小型企业主 / 创业者 / 项目负责人 / 广告公司采购\n\n### 1.1 客户任务 (Customer Jobs)\n- 需要一套专业高档的品牌 Logo 和 VI 应用来吸引客户与投资人。\n- 需要在 3~7 天内完成重要的发布会 KV、路演 PPT 或店铺门头效果图。\n- 需要有专业策略眼光的团队帮其整理乱七八糟的品牌诉求。\n\n### 1.2 客户痛点 (Customer Pains)\n- **痛点 A (贵且慢)**：传统 4A/大设计公司动辄数万且周期 1 个月以上，沟通成本高。\n- **痛点 B (廉价且质差)**：找淘宝/低价淘宝美工，出来的效果同质化、土气、无商业策略。\n- **痛点 C (不可落地)**：很多设计图好看但线下根本无法印刷或施工安装。\n\n### 1.3 客户期望收益 (Customer Gains)\n- **收益 A**：用中等预算获得大厂级视觉效果。\n- **收益 B**：超快交付，不耽误业务发布与融资进度。\n- **收益 C**：线上设计与线下制作（多淼合作）无缝衔接，落地不踩坑。\n\n---\n\n## 2. 价值主张设计 (Value Proposition Fit)\n\n| 产品与服务 | 痛点缓解器 (Pain Relievers) | 收益创造器 (Gain Creators) |\n|---|---|---|\n| **策略型 AI 视觉设计** | 拒绝低端套版，由策略师+资深美工双重把关。 | AI 提效 3~5 倍，让精品设计价格降低 50%+。 |\n| **快速响应交付 SOP** | 明确 3~7 天交付节点，每天推送进展。 | 客户心里有底，比传统公司快 3 倍。 |\n| **线上+线下联合能力** | 多淼苏州本地实操经验，保障施工印刷可用。 | 从屏幕效果到实体落地一站式不踩坑。 |\n\n---\n\n## 3. 核心价值主张声明 (Value Proposition Statement)\n\n> **对外一句话**：  \n> **\"策略先于执行，专业驾驭效能 — 元晟传媒为您打造大厂级品牌视觉与超速交付方案。\"**\n\n---\n\n## 4. 下一步\n\n- **下一 OPC 阶段**：`04-business-model`（商业模式精益画布）。\n", "04-business-model.md": "# 元晟传媒 (Gensight) - OPC 04 商业模式 (出海独立站战略升级版)\n\n> 状态：已重构商业模式画布  \n> 核心工具：**精益商业模式画布 (Lean Canvas)**  \n\n---\n\n## 1. 升级版精益画布\n\n```\n+------------------------+------------------------+------------------------+------------------------+------------------------+\n| 1. 问题 (Problem)      | 4. 解决方案 (Solution) | 3. 价值主张 (UV)       | 9. 门槛优势 (Unfair)   | 2. 客户细分 (Customer) |\n| - 单一广告商外包单价低 | - 策略+视觉+建站全案   | - 策略先于建站         | - Howard25年商业高管策略 | - 出海工贸一体工厂      |\n| - 企AI落地周期长不好收费| - No-Code 7~14天极速交付| - 视觉撬动海外转化     | - Brian+AI大厂级英文视觉 | - 国内 D2C 品牌出海     |\n| - 传统建站缺欧美品牌包装| - 配合海外广告视觉月包 | - 打造百万美元级海外形象| - No-Code+AI 3-5倍提效 | - 独立站精品卖家      |\n+------------------------+------------------------+------------------------+------------------------+------------------------+\n| 8. 关键指标 (Metrics)                            | 5. 渠道 (Channels)                              |\n| - 高客单成单率 (目标 >¥19,800)                    | - 小红书/公众号：出海独立站视觉与转化率拆解干货  |\n| - 独立站项目交付周期 (目标 <10天)                | - 领英 (LinkedIn) / 割草出海社群直接对接老板    |\n| - 海外广告素材按月续费率                          | - 出海生态联盟 (PingPong/Airwallex/物流服务商)  |\n+------------------------+------------------------+------------------------+------------------------+------------------------+\n| 7. 成本结构 (Cost Structure)                     | 6. 收入流 (Revenue Streams)                     |\n| - AI 工具与建站 SaaS 订阅 (Shopify/MJ/Claude)     | - 独立站诊断体验包 (¥1,980)                    |\n| - 两人团队人力成本 (无固定大额房租与固定资产)    | - 出海独立站标准/起飞全案 (¥19,800 ~ ¥39,800)   |\n| - 自媒体内容创作与精准圈子拓展成本                | - 海外广告视觉月度代制作包 (¥5,680/月)          |\n+------------------------+------------------------+------------------------+------------------------+------------------------+\n```\n\n---\n\n## 2. 两人团队交付 SOP 分工\n\n```\n[ 客户沟通/策略签单 ] ────► Howard：负责高客单沟通、商业定位、英文Copywriting (AI辅助)\n         │\n         ▼\n[ 视觉设计/素材生成 ] ────► Brian：利用 Midjourney/SD 生成欧美模特图、产品3D感场景图、Banner\n         │\n         ▼\n[ No-Code 建站与落地 ] ───► Howard+Brian：使用 Shopify / WP Elementor 拖拽搭站、配置域名/支付/物流\n         │\n         ▼\n[ 验收交付与月包续费 ] ───► Howard：交付客户并推销 Meta/TikTok 广告视觉月包 (¥5,680/月)\n```\n\n---\n\n## 3. 下一步\n\n- 结合 `06-mvp-design.md` 打造首个虚拟/合作出海品牌样板案例。\n", "05-crossborder-opc-master-plan.md": "# 元晟传媒 (Gensight) - 出海独立站全案 OPC 运营方案总纲 (Master Blueprint)\n\n> 版本：2026-08 战略与运营全纲  \n> 责任人：Howard (COO / 策略) & Brian (视觉 / 出图)  \n\n---\n\n## 1. 战略共识与四象限对齐\n\n根据四象限法则（共同已知、我的已知/你的未知、我的未知/你的已知、共同未知），本方案确立以下基石：\n\n- **共同已知**：摆脱广告商低价代工与企AI长周期落地的泥潭，转向**出海独立站高溢价全案（策略 + 欧美视觉 + No-Code 搭站 + 广告视觉月包）**。\n- **我的未知 / 你的已知 (避坑提醒)**：绝不做纯底层代码开发；核心难点不在建站技术，而在**符合欧美审美的英文 Copywriting、品牌故事与大厂级视觉**。采用 No-Code 引擎 3~5 倍提效。\n- **共同未知 (MVP 假设)**：14 天内能否用 1 个精品 Demo 站获得 5+ 精准外贸/D2C 企业主私信，并卖出 ¥1,980 诊断包或 ¥19,800 全案？\n\n---\n\n## 2. 核心里程碑与时间节点\n\n```\n[ Phase 1: 0-7 天 技能速成与 Demo 样板建盘 ]\n├── Day 1-2: 掌握 Shopify / Elementor 可视化拖拽搭建与后台配置\n├── Day 3-4: 跑通 Claude 英文营销文案 Prompt 与 Midjourney 欧美 Lifestyle 模特图\n└── Day 5-7: 打造首个“智能户外电源”极简大厂风 Demo 样板站\n\n[ Phase 2: 8-14 天 全网内容发酵与首单试水 ]\n├── Day 8-10: 制作《欧美独立站拆解与 AI 建站实录》发布于小红书、领英、外贸社群\n├── Day 11-12: 跑通 15 分钟咨询接待 SOP，主推 ¥1,980 独立站诊断包\n└── Day 13-14: 争取跑通首个 ¥19,800 出海独立站标准包签约\n\n[ Phase 3: 15-30 天 标准化交付与月代制作包续费 ]\n├── 按两人协同 SOP 7-10 天高标准交付独立站\n└── 引导客户按季签署 ¥5,680 / 月的海外广告视觉代制作包，锁定长期 LTV\n```\n\n---\n\n## 3. 关联运营细则文档索引\n\n- 📄 **产品与报价手册**：[product-spec-and-pricing.md](./product-spec-and-pricing.md)\n- 📄 **7天学习计划与两人 SOP**：[learning-and-sop-roadmap.md](./learning-and-sop-roadmap.md)\n- 📄 **Demo 样板站选型与策划**：[demo-case-blueprint.md](./demo-case-blueprint.md)\n- 📄 **OPC 利基定位升级版**：[02-niche-positioning.md](./02-niche-positioning.md)\n- 📄 **OPC 精益商业模式画布**：[04-business-model.md](./04-business-model.md)\n", "06-mvp-design.md": "# 元晟传媒 (Gensight) - OPC 06 MVP 设计\n\n> 状态：已完成梳理  \n> 周期：14 天 MVP 验证期  \n\n---\n\n## 1. MVP 核心假设与目标\n\n**最小可行验证 (MVP) 目标**：在不进行大额投流与公司正式开业前，用最轻资源验证市场对元晟视觉设计服务的付赞意愿与询盘转化路径。\n\n---\n\n## 2. MVP 两大触达阵地\n\n### 阵地 1：小红书自媒体品牌样板展示\n- **验证形式**：发布 6~10 篇高品质案例拆解图文（半间茶舍、米兰坊、文家姑娘等）。\n- **指标**：获得 50+ 互动，引流 10+ 微信私信咨询。\n\n### 阵地 2：闲鱼高频搜索体验款\n- **验证形式**：上架低价/入门级设计体验商品（如 Logo 基础诊断、简易排版试水）。\n- **目的**：利用咸鱼搜索流量筛选高意向直客，导流至微信转化为 ¥1,980+ 套件。\n\n---\n\n## 3. MVP 验证交付物边界\n\n| 包含在 MVP 验证内 | 严格排除在 MVP 之外 |\n|---|---|\n| 01-18 现有文档的报价单与对外物料 | 大规模自动化网站开发 |\n| 飞书多维表格与本地工作台双轨协同 | 大额小红书/抖音付费投流 |\n| 微信客服承接与定制商业提案 PDF | 无边界的免费试稿与无底线改稿 |\n\n---\n\n## 4. 下一步\n\n- **下一 OPC 阶段**：`07-conversion-loop`（转化闭环）。\n", "07-conversion-loop.md": "# 元晟传媒 (Gensight) - OPC 07 转化闭环\n\n> 状态：已完成梳理  \n> 路径：**触达 → 承接 → 成交 → 交付 → 复购/沉淀**  \n\n---\n\n## 1. 转化全路径结构\n\n```\n[ 流量触达 ] (小红书案例图文 / 闲鱼体验款 / 朋友圈)\n     │\n     ▼\n[ 微信承接 ] (个人微信 / 商业提案单页 13-commercial-proposal-service.md)\n     │\n     ▼\n[ 成交签约 ] (确认需求包 03-public-pricing.md / 预付 50% 订金)\n     │\n     ▼\n[ 飞书协同交付 ] (Howard策略+Brian出图 / 飞书看板控制进度 16-feishu-bitable-workbench-plan.md)\n     │\n     ▼\n[ 尾款与案例沉淀 ] (结案归档 / 转化为新的小红书案例 06-case-packaging-library.md)\n```\n\n---\n\n## 2. 关键节点 SOP 规范\n\n| 节点 | 对应标准文档 | 核心动作与责任人 |\n|---|---|---|\n| **1. 询盘接待 SOP** | `08-sales-and-intake-sop.md` | Howard 15 分钟内响应，评估需求痛点，发送对外报价 PDF 与相关案例。 |\n| **2. 需求拆解与报价** | `03-public-pricing.md` | 根据 5 类主推产品快速对齐预算，无争议后签署协议/收取 50% 订金。 |\n| **3. 制作与协同交付** | `12-company-profile-delivery-standards.md` | 飞书多维表格推送任务，Brian出图，Howard策略审查。 |\n| **4. 案例复用与沉淀** | `06-case-packaging-library.md` | 结案后脱敏整理放入案例库，作为下一波自媒体营销素材。 |\n\n---\n\n## 3. 阶段性结论与建盘期完成声明\n\n> **建盘期已完成**：资源盘点 (01)、利基定位 (02)、价值主张 (03)、商业模式 (04)、MVP设计 (06)、转化闭环 (07) 均已全部落盘并与 Gensight 项目实操文档深度绑定。\n>\n> 接下来进入日常运营阶段。当遇到运营卡顿或需要系统化成果时，可随时调用 `opc-asset-ops` (资产沉淀) 或 `opc-dashboard-review` (经营复盘) 技能。\n", "README.md": "# 元晟传媒 (Gensight) - OPC 一人企业方法论规划文档库\n\n本目录是依据 [OPC 方法论 (LucasCyberLab/opc-methodology)](https://github.com/LucasCyberLab/opc-methodology.git) 建立的项目规划与执行分析库。\n\n## OPC 阶段规划架构\n\n| 阶段编号 | 阶段名称 | 状态 | 对应产物文档 | 核心关注点 |\n|---|---|---|---|---|\n| **01** | **资源盘点** | 待确认/已梳理 | [01-resource-audit.md](./01-resource-audit.md) | Howard/Brian 8类资源盘点、AI新杠杆与约束评估 |\n| **02** | **利基定位** | 待确认/已梳理 | [02-niche-positioning.md](./02-niche-positioning.md) | AI视觉/品牌设计利基选择、六维评分与不竞争策略 |\n| **03** | **价值主张** | 待确认/已梳理 | [03-value-proposition.md](./03-value-proposition.md) | 客户Jobs/Pains/Gains分析与高转化价值主张声明 |\n| **04** | **商业模式** | 待确认/已梳理 | [04-business-model.md](./04-business-model.md) | 精益画布 (Lean Canvas) 填写与最危险假设识别 |\n| **06** | **MVP 设计** | 待确认/已梳理 | [06-mvp-design.md](./06-mvp-design.md) | 7-14天最小可行验证方案（闲鱼试水+小红书样板案例） |\n| **07** | **转化闭环** | 待确认/已梳理 | [07-conversion-loop.md](./07-conversion-loop.md) | 流量触达 → 微信承接 → 飞书交付 → 案例复购闭环 |\n| **08** | **资产沉淀** | 运营期循环 | [08-asset-ops.md](./08-asset-ops.md) | 案例包装库、SOP化模版、AI Prompt/Workflow沉淀 |\n| **09** | **经营复盘** | 运营期循环 | [09-dashboard-review.md](./09-dashboard-review.md) | 周期性瓶颈识别与单点突破路线图 |\n\n---\n\n## 关联参考资料\n- OPC 方法论完整原书：[docs/opc-methodology/](../docs/opc-methodology/)\n- 项目现有业务与执行规划：`00-foundation-review.md` ~ `18-social-media-content-sprint.md`\n- 飞书多维表格协同方案：`16-feishu-bitable-workbench-plan.md`\n", "demo-case-blueprint.md": "# 元晟传媒 (Gensight) - 首个 Demo 样板案例选型与制作思考\n\n> 版本：2026-08 样板站策划案  \n> 目的：在不依赖真实客户订单的情况下，用 3 天打造一个具备百万美元品牌质感的出海独立站 Demo，作为全网发帖与谈单的核武器。  \n\n---\n\n## 1. 样板选型思考：为什么选“智能户外移动电源 / 户外装备”？\n\n经过对出海市场需求与团队能力匹配度评估，首个 Demo 确定选型为：**“LUMINA - 智能便携式户外电源 & 太阳能快充系统”**（或高级智能胶囊咖啡机）。\n\n### 选型逻辑：\n1. **出海热度极高**：户外电源、便携储能、智能小家电是近年来中国工贸一体企业出海（如 Jackery 猎户座、Anker 阳台光伏）最火爆、预算充足的品类。\n2. **视觉冲击力强**：户外场景（森林露营、雪线越野、房车旅行）天然适合 Midjourney 生成极富视觉震撼力的欧美真实 Lifestyle 大图。\n3. **策略溢价明显**：工贸工厂做此类产品往往只堆砌电池容量参数；Gensight 可以展示如何将“电池参数”包装为“Freedom Anywhere (随处自由)”的欧美品牌生活方式。\n\n---\n\n## 2. Demo 样板站 5 大核心页面架构\n\n1. **Homepage (首页)**：\n   - Hero Banner：极具视觉冲击力的欧美野外露营大图，配高透文字：“Power Your Wildest Dreams.”\n   - 痛点对比区： Traditional Heavy Generator (笨重传统发电机) vs LUMINA Smart Power (轻量智能储能)。\n   - 商业信任背书 (Trust Grid)：展示 4.9 星评价、海外媒体报道标志 (TechCrunch, Forbes 等占位设计)。\n2. **Product Detail Page (产品详情页)**：\n   - 3D 渲染感爆炸图（展示内部安全电芯与散热架构）。\n   - 场景化插图：户外无人机充电、咖啡机供电、应急医疗保障。\n   - 购买转化按钮与倒计时优惠挂件。\n3. **Brand Story (品牌故事页)**：\n   - 创始人理念：为什么我们要设计一款让环保与野外探索完美融合的电源？\n4. **Technology & Safety (技术与安全页)**：\n   - 强调 BMS 智能电池管理系统与极值耐温技术。\n5. **Support & FAQ (售后与常见问题页)**：\n   - 海外 2 年质保说明、全球仓发货与常见使用问答。\n\n---\n\n## 3. Demo 成果包装与全网传播\n\nDemo 站制作完成后，将其转化为 3 大宣传资产：\n1. **静态长图案例**：《如何用 AI 3 天打造一个大厂级出海品牌独立站？》发布于小红书与微信公众号。\n2. **视频漫游**：录制 1 分钟高清屏幕漫游视频，配英文音效，展示移动端/Web 端动态效果。\n3. **提案 PDF 附件**：把 Demo 站各版块截图直接放入给客户的《Gensight 商业合作提案》中作为实力背书。\n", "learning-and-sop-roadmap.md": "# 元晟传媒 (Gensight) - 独立站技术学习计划与两人协同 SOP\n\n> 版本：2026-08 实施版  \n> 目标：7 天内攻克 No-Code 独立站搭建全流程，建立标准化交付 SOP。  \n\n---\n\n## 1. 7 天速成学习计划 (No-Code 建站 + AI 视觉 + 英文 Copywriting)\n\n### Day 1 ~ Day 2：No-Code 建站核心技术拆解 (Howard + Brian)\n- **重点**：放弃代码思维，掌握可视化建站引擎。\n- **Howard**：注册 Shopify 试用账号，掌握 Shopify 后台架构、域名解析、支付配置（PayPal/Stripe 模版）、运费模版配置及基础应用插件。\n- **Brian**：学习 Shopify PageFly / Shogun 或 WordPress Elementor 拖拽排版，掌握网格留白、响应式移动端适配（Mobile-First）。\n\n### Day 3 ~ Day 4：AI 英文营销文案与欧美视觉生成 (Howard + Brian)\n- **Howard**：训练 Claude / ChatGPTPrompt 模版——输入产品功能参数，输出符合欧美文化习惯的 Brand Story、Hero Banner 标语、痛点对比表及 FAQ。\n- **Brian**：主攻 Midjourney / SD / Flux 生成欧美本土模特图（European & American Lifestyle）、极简 3D 渲染光影感产品场景图与透明底展示图。\n\n### Day 5 ~ Day 7：打造首个虚拟品牌 Demo 样板站 (实操跑通)\n- **目标**：选定 1 个品类（如“智能户外储能电源”或“极简智能咖啡机”），完成 1 个 100% 具备大厂品质的演示独立站。\n- **产出**：将 Demo 站录屏、截图并打包为《Gensight 出海品牌独立站案例实录》。\n\n---\n\n## 2. 两人协同交付 SOP (Howard & Brian)\n\n```\n阶段 1: 询盘与签约 (Howard主导)\n├─ 1.1 15 分钟内响应客户咨询，评估出海品类与目标市场\n├─ 1.2 发送《出海独立站产品手册与案例 Demo》\n└─ 1.3 确定需求梯队，签署线上协议，收取 50% 订金\n\n阶段 2: 策略定义与素材生产 (双人并发)\n├─ Howard (策略与文案):\n│   ├─ 2.1 品牌定位与价值主张提取\n│   └─ 2.2 使用 Claude 生成全站英文 Copywriting\n└─ Brian (视觉与素材):\n    ├─ 2.3 生成符合欧美审美的主视觉 Banner\n    └─ 2.4 使用 MJ/Flux 精修 10 款主力产品场景图\n\n阶段 3: No-Code 建站与整合 (两人协同)\n├─ 3.1 Shopify/WP 站点搭建与页面组装 (Howard配后台，Brian做排版)\n├─ 3.2 移动端 (Mobile) 与 Web 端双端适配测试\n└─ 3.3 对接域名、支付接口、物流模版与基础 SEO\n\n阶段 4: 交付验收与后续转化 (Howard主导)\n├─ 4.1 远程演示站点，提交客户验收并收取 50% 尾款\n├─ 4.2 交付站点管理权限与 1 小时使用培训视频\n└─ 4.3 引导客户签署《海外广告视觉与素材月包 (¥5,680/月)》\n```\n", "product-spec-and-pricing.md": "# 元晟传媒 (Gensight) - 出海独立站产品手册与报价单\n\n> 版本：2026-08 战略转型定稿版  \n> 适用：对外直客报价、商业提案、客户沟通及交付标准参考  \n\n---\n\n## 1. 产品矩阵与交付标准\n\n### 1.1 [体验款] 出海独立站诊断与升级方案包\n- **目标客户**：已有官网/独立站，但转化率极低、样式陈旧、文案硬伤多的外贸企业。\n- **服务内容**：\n  1. **视觉与审美诊断**：评估现有站点色系、版式、留白、图片质感等 10 项视觉指标。\n  2. **英文文案与逻辑诊断**：纠正语法硬伤、中式英语（Chinglish）、缺失价值主张等文案问题。\n  3. **海外转化率瓶颈分析**：评估 Call to Action (CTA) 按钮、响应式适配、信任背书（Trust Badges）设置。\n  4. **交付物**：10 页 PDF 专业诊断报告 + 30 分钟远程视频讲解。\n- **服务定价**：**¥1,980**（若后续签约独立站全案，¥1,980 可直接抵扣全案款项）。\n- **交付周期**：2 个工作日。\n\n---\n\n### 1.2 [主力款] 出海品牌 Shopify / WP 独立站标准包\n- **目标客户**：工贸一体工厂首建独立站、国内 D2C 品牌首次出海试水。\n- **服务内容**：\n  1. **欧美品牌视觉 VI 规整**：标准色系、标准英文 Fonts 搭配、Logo 规范化（包含Brian+AI 生成）。\n  2. **独立站全站 No-Code 搭建**：涵盖 Homepage (首页)、Product Page (详情页)、About Us (关于我们)、Contact Us (联系我们)、FAQ (常见问题) 5 大核心页面。\n  3. **视觉素材制作**：10 款主力产品 AI 场景精修图 + 3 张首页 Banner 大图。\n  4. **基础基础设施配置**：绑定独立域名、配置 SSL 证书、对接 PayPal/Stripe 支付接口、配置基础运费规则与 SEO 基础 Meta 标签。\n- **服务定价**：**¥19,800**（预付 50% 订金，上线验收后付 50% 尾款）。\n- **交付周期**：7 ~ 10 个工作日。\n\n---\n\n### 1.3 [旗舰款] 出海品牌独立站起飞全案\n- **目标客户**：追求大厂品牌高溢价、筹备海外融资或大面积投流的高阶出海卖家。\n- **服务内容**：\n  1. **包含标准包所有内容**。\n  2. **出海品牌策略定位**：Howard亲自操刀品牌定位、价值主张定义、英文 Brand Story (品牌故事) 与高转化产品 Copywriting 撰写。\n  3. **全站高级视觉提升**：20 款产品 AI 3D/真实场景图 + 互动交互 Banner 设计。\n  4. **海外广告视觉全包**：交付 10 套专用于 Meta (Facebook/IG)、TikTok、Google 投流的高转化 Banner 与短视频素材。\n  5. **自动化工具接入**：接入 AI 自动客服 Widget、邮件订阅 (Klaviyo) 与追单自动化工作流。\n- **服务定价**：**¥39,800**（预付 50% 订金，上线验收付尾款）。\n- **交付周期**：14 个工作日。\n\n---\n\n### 1.4 [LTV续费款] 海外广告视觉与素材月代制作包\n- **目标客户**：独立站已上线，需要长期进行海外投流与社交媒体运营的卖家。\n- **服务内容**：\n  - 每月定额交付 15 ~ 20 套用于 Meta/TikTok/Google 的精修广告 KV、短视频素材或促销 Banner。\n  - 季度独立站视觉小幅度迭代与活动促销页面更新。\n- **服务定价**：**¥5,680 / 月**（按季签署，按月支付）。\n\n---\n\n## 2. 对外服务边界与增值说明\n\n| 包含服务边界 | 明确不包含 (需额外增值收费) |\n|---|---|\n| 域名绑定与第三方 SaaS 接口配置指导 | 域名买断费用、Shopify 月租、插件付费订阅费 (客户自行支付) |\n| 英文文案生成与语法校对 | 几十上百款海量 SKU 的纯人工逐一录入 (提供 CSV 批量导入模版) |\n| 基础 SEO 架构配置 | 复杂的第三方代码二次开发与服务器底层深度重构 |\n| 交付后 30 天基础维护指导 | 代客户进行实际广告投流与跑广告账户 (可推荐合作投流团队) |\n"};
+    const docTitles = {"05-crossborder-opc-master-plan.md": "05. OPC 运营方案总纲 (Master Plan)", "01-resource-audit.md": "01. 资源盘点 (Resource Audit)", "02-niche-positioning.md": "02. 利基定位重塑 (Niche Positioning)", "03-value-proposition.md": "03. 价值主张设计 (Value Proposition)", "04-business-model.md": "04. 精益商业模式 (Business Model)", "06-mvp-design.md": "06. MVP 验证设计 (MVP Design)", "07-conversion-loop.md": "07. 转化闭环 SOP (Conversion Loop)", "product-spec-and-pricing.md": "💎 产品手册与报价单 (Product & Pricing)", "learning-and-sop-roadmap.md": "🛠️ 7天学习计划与协同SOP (Learning & SOP)", "demo-case-blueprint.md": "💡 首个 Demo 样板案例思考 (Demo Strategy)", "README.md": "📚 OPC 文档库说明 (Overview)"};
+    const docFiles = [
+      "05-crossborder-opc-master-plan.md",
+      "01-resource-audit.md",
+      "02-niche-positioning.md",
+      "03-value-proposition.md",
+      "04-business-model.md",
+      "06-mvp-design.md",
+      "07-conversion-loop.md",
+      "product-spec-and-pricing.md",
+      "learning-and-sop-roadmap.md",
+      "demo-case-blueprint.md",
+      "README.md"
+    ];
+
+    let currentFile = "05-crossborder-opc-master-plan.md";
+
+    function loadDoc(filename) {
+      if (!docs[filename]) return;
+      currentFile = filename;
+
+      // Render Markdown
+      const content = docs[filename];
+      document.getElementById('docViewer').innerHTML = marked.parse(content);
+
+      // Update Nav Class
+      document.querySelectorAll('.nav-item').forEach(el => {
+        if (el.dataset.file === filename) el.classList.add('active');
+        else el.classList.remove('active');
+      });
+
+      // Update Footer Buttons
+      const idx = docFiles.indexOf(filename);
+      document.getElementById('prevBtn').style.visibility = idx > 0 ? 'visible' : 'hidden';
+      document.getElementById('nextBtn').style.visibility = idx < docFiles.length - 1 ? 'visible' : 'hidden';
+
+      // Scroll to top
+      document.querySelector('.content-area').scrollTop = 0;
+    }
+
+    function prevDoc() {
+      const idx = docFiles.indexOf(currentFile);
+      if (idx > 0) loadDoc(docFiles[idx - 1]);
+    }
+
+    function nextDoc() {
+      const idx = docFiles.indexOf(currentFile);
+      if (idx < docFiles.length - 1) loadDoc(docFiles[idx + 1]);
+    }
+
+    function copyMarkdown() {
+      const content = docs[currentFile];
+      navigator.clipboard.writeText(content).then(() => {
+        alert("Markdown 内容已成功复制到剪贴板！");
+      });
+    }
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase().trim();
+      if (!query) {
+        loadDoc(currentFile);
+        return;
+      }
+
+      // Find matches across all docs
+      for (const file of docFiles) {
+        if (docs[file].toLowerCase().includes(query)) {
+          loadDoc(file);
+          break;
+        }
+      }
+    });
+
+    // Initialize
+    loadDoc(currentFile);
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[Unit]
+Description=元晟传媒协同工作台
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/srv/gensight/current
+ExecStart=/usr/bin/python3 /srv/gensight/current/server.py --port 8025 --bind 127.0.0.1
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

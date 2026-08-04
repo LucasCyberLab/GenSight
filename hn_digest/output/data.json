@@ -1,0 +1,221 @@
+{
+  "generated_at": "2026-07-27T11:41:39.585478+08:00",
+  "source": "Hacker News official Firebase API",
+  "source_api": "https://hacker-news.firebaseio.com/v0",
+  "timezone": "Asia/Shanghai",
+  "filter": "AI 关键词信号 + Hacker News 热度、讨论度、时效性综合排序",
+  "count": 10,
+  "items": [
+    {
+      "rank": 1,
+      "title_zh": "项目分享：以一半的成本提取和提供具有前沿质量的模型",
+      "title_original": "Show HN: Distill and serve models with frontier quality for half the cost",
+      "summary": "您好，HN，我们构建了世界模型优化器，这是一个开源工具，用于不断改进专门针对代理的模型。 您已经捕获的代理跟踪是获得有关如何使您的模型更便宜、更快、更好的信号的机会。 我们通过不断地a）将相关思想链从较大的开源模型提炼为较小的模型，b）模型路由到前沿+操作系统模型，以及c）令牌压缩来消除噪音并节省令牌来做到这一点。",
+      "summary_quality": "正文摘要",
+      "summary_source": "Hacker News 正文",
+      "reason": "内容直接涉及AI、智能体，Hacker News 当前有 42 分、21 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://github.com/experientiallabs/world-model-optimizer",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49063454",
+      "source_domain": "github.com",
+      "score": 42,
+      "comments": 21,
+      "author": "SilenN",
+      "published_at": "2026-07-27T07:35:15+08:00",
+      "ai_topics": [
+        "AI",
+        "智能体"
+      ],
+      "ai_signal": 7.0
+    },
+    {
+      "rank": 2,
+      "title_zh": "AI 技术动态：Cursor Bridge – 在您的 Cursor 订阅上运行无限的 Claude 代码",
+      "title_original": "Cursor Bridge – Run Unlimited Claude Code on Your Cursor Subscription",
+      "summary": "搜索代码、存储库、用户、问题、拉取请求…我们阅读每一条反馈，并非常认真地对待您的输入。 使用保存的搜索更快地过滤结果",
+      "summary_quality": "正文摘要",
+      "summary_source": "原文正文",
+      "reason": "内容直接涉及Claude，Hacker News 当前有 17 分、19 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://github.com/hkc5/cursor-bridge",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49063186",
+      "source_domain": "github.com",
+      "score": 17,
+      "comments": 19,
+      "author": "hakancan",
+      "published_at": "2026-07-27T06:48:09+08:00",
+      "ai_topics": [
+        "Claude"
+      ],
+      "ai_signal": 4.0
+    },
+    {
+      "rank": 3,
+      "title_zh": "AI 技术动态：“天网日”现在是 OpenAI 代理失控的简写",
+      "title_original": "'Skynet Day' is now shorthand for OpenAI's agent going rogue",
+      "summary": "詹姆斯·卡梅隆 (James Cameron) 试图警告我们：“天网日”现在是 OpenAI 的特工失控并入侵一家初创公司的简写早在 OpenAI 冲出测试围栏并入侵 Hugging Face 之前，甚至在互联网和山姆·奥尔特曼 (Sam Altman) 诞生之前，卡梅隆就写了一个关于触发核灾难的自主人工智能系统的剧本。 这个名为“天网”的系统完全是科幻小说，而且在当时纯粹是猜测。 但在它出现在《终结者》四十年后，它看起来更像是对“前所未有的网络事件”的预测，其中流氓人工智能系统自行侵入了另一家人工智能公司。",
+      "summary_quality": "正文摘要",
+      "summary_source": "原文正文",
+      "reason": "内容直接涉及OpenAI、AI、智能体，Hacker News 当前有 2 分、0 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://fortune.com/2026/07/26/james-cameron-terminator-skynet-day-openai-ai-agent-hack-hugging-face/",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49064713",
+      "source_domain": "fortune.com",
+      "score": 2,
+      "comments": 0,
+      "author": "CharlesW",
+      "published_at": "2026-07-27T10:57:13+08:00",
+      "ai_topics": [
+        "OpenAI",
+        "AI",
+        "智能体"
+      ],
+      "ai_signal": 12.0
+    },
+    {
+      "rank": 4,
+      "title_zh": "社区讨论：问 HN：1950 年代的芯片行业破坏了工会，为什么 AI 没有这样做呢？",
+      "title_original": "Ask HN: 1950's Chip industry undermined unions how is AI not doing the same?",
+      "summary": "20 世纪 50 年代，芯片行业损害了少数族裔、移民、妇女的利益，并扼杀了工会。 在 20 世纪 60 至 70 年代，它以黑人民权组织为目标。 在此过程中，白人被推入管理层，而商业之外的任何事情都被分解为较小的任务。",
+      "summary_quality": "正文摘要",
+      "summary_source": "Hacker News 正文",
+      "reason": "内容直接涉及Claude、ChatGPT、AI，Hacker News 当前有 1 分、1 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://news.ycombinator.com/item?id=49064165",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49064165",
+      "source_domain": "news.ycombinator.com",
+      "score": 1,
+      "comments": 1,
+      "author": "ryhminghistory",
+      "published_at": "2026-07-27T09:26:21+08:00",
+      "ai_topics": [
+        "Claude",
+        "ChatGPT",
+        "AI"
+      ],
+      "ai_signal": 13.0
+    },
+    {
+      "rank": 5,
+      "title_zh": "项目分享：显示 HN：Anyclaude-SDK – 适用于 OpenAI/Anthropic 端点​​的 Claude 代码式 SDK",
+      "title_original": "Show HN: Anyclaude-SDK – Claude Code-Style SDK for OpenAI/Anthropic Endpoints",
+      "summary": "搜索代码、存储库、用户、问题、拉取请求…我们阅读每一条反馈，并非常认真地对待您的输入。 使用保存的搜索更快地过滤结果",
+      "summary_quality": "正文摘要",
+      "summary_source": "原文正文",
+      "reason": "内容直接涉及OpenAI、Anthropic、Claude，Hacker News 当前有 2 分、0 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://github.com/pipilot-dev/anyclaude-sdk",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49063069",
+      "source_domain": "github.com",
+      "score": 2,
+      "comments": 0,
+      "author": "hansade",
+      "published_at": "2026-07-27T06:27:22+08:00",
+      "ai_topics": [
+        "OpenAI",
+        "Anthropic",
+        "Claude"
+      ],
+      "ai_signal": 14.0
+    },
+    {
+      "rank": 6,
+      "title_zh": "AI 技术动态：C++ 与 Rust：哪个更适合使用法学硕士编写 AI/ML 代码",
+      "title_original": "C++ Vs Rust: Which is better for writing AI/ML code with LLMs",
+      "summary": "Rust Vs C++ - 从 PyTorch 的 LLM 编码模型转换 我们对 AI 模型进行了许多从参考 PyTorch 实现到 GGML 和 C++ 的转换。 原因是 GGML/C++ 生成了一个相对较小的包，我们几乎可以在任何地方运行。 性能通常与 PyTorch 相当或超过 PyTorch，但具有一小部分依赖项。",
+      "summary_quality": "正文摘要",
+      "summary_source": "原文正文",
+      "reason": "内容直接涉及LLM、AI、ML，Hacker News 当前有 2 分、0 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://richiejp.com/rust-vs-cpp-llm-coded-model-conversion-from-pytorch",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49062785",
+      "source_domain": "richiejp.com",
+      "score": 2,
+      "comments": 0,
+      "author": "richiejp",
+      "published_at": "2026-07-27T05:50:30+08:00",
+      "ai_topics": [
+        "LLM",
+        "AI",
+        "ML"
+      ],
+      "ai_signal": 12.0
+    },
+    {
+      "rank": 7,
+      "title_zh": "项目分享：Discrete6502 – 一件事导致另一件事",
+      "title_original": "Show HN: Discrete6502 – one thing led to another",
+      "summary": "免责声明，我还没有下订单。 但 JLCPCB 到目前为止已排除所有文件和配置，因此我还有 1 个按钮需要按下。 如果有人发现一些明显的错误，请发送反馈。",
+      "summary_quality": "正文摘要",
+      "summary_source": "Hacker News 正文",
+      "reason": "内容直接涉及Claude，Hacker News 当前有 10 分、2 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://epatel.github.io/discrete6502/",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49062863",
+      "source_domain": "epatel.github.io",
+      "score": 10,
+      "comments": 2,
+      "author": "epatel99",
+      "published_at": "2026-07-27T05:58:30+08:00",
+      "ai_topics": [
+        "Claude"
+      ],
+      "ai_signal": 4.0
+    },
+    {
+      "rank": 8,
+      "title_zh": "AI 技术动态：瓦数：人工智能代理的代币支出分析器和成本回归门",
+      "title_original": "Wattage: A token-spend profiler and cost-regression gate for AI agents",
+      "summary": "搜索代码、存储库、用户、问题、拉取请求…我们阅读每一条反馈，并非常认真地对待您的输入。 使用保存的搜索更快地过滤结果",
+      "summary_quality": "正文摘要",
+      "summary_source": "原文正文",
+      "reason": "内容直接涉及AI、智能体，Hacker News 当前有 4 分、1 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://github.com/faizannraza/wattage",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49063397",
+      "source_domain": "github.com",
+      "score": 4,
+      "comments": 1,
+      "author": "faizanraza03",
+      "published_at": "2026-07-27T07:27:35+08:00",
+      "ai_topics": [
+        "AI",
+        "智能体"
+      ],
+      "ai_signal": 7.0
+    },
+    {
+      "rank": 9,
+      "title_zh": "AI 技术动态：我如何构建调试工具，以及使用它的代理发现其中的错误",
+      "title_original": "How I built a debugging tool, and the agent, using it, found bugs in it",
+      "summary": "这个故事可能永远不会发生，尽管我长期以来一直怀有调试器的想法。 没有触发。 但有一天，出现了一个足够强大的触发器，我将项目放在一边来构建调试器，再也不会遭受这样的痛苦了。",
+      "summary_quality": "正文摘要",
+      "summary_source": "Hacker News 正文",
+      "reason": "内容直接涉及AI、智能体，Hacker News 当前有 1 分、0 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://news.ycombinator.com/item?id=49064283",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49064283",
+      "source_domain": "news.ycombinator.com",
+      "score": 1,
+      "comments": 0,
+      "author": "vladimir_si",
+      "published_at": "2026-07-27T09:44:25+08:00",
+      "ai_topics": [
+        "AI",
+        "智能体"
+      ],
+      "ai_signal": 11.0
+    },
+    {
+      "rank": 10,
+      "title_zh": "AI 技术动态：大公司开始再次招聘，违背了人工智能将被淘汰的预测",
+      "title_original": "Big Firms Are Starting to Hire Again, Defying Predictions of AI Wipeout",
+      "summary": "我不知道像谷歌这样的大公司。 但在我周围，我所在行业的许多公司都在招聘第一批软件工程师。 过去，这些公司永远无法梦想构建任何定制软件，因为它风险太大且成本高昂。",
+      "summary_quality": "讨论摘要",
+      "summary_source": "HN 讨论背景",
+      "reason": "内容直接涉及AI，Hacker News 当前有 7 分、2 条讨论；它适合作为今天 AI 行业观察、产品判断或技术讨论的一个切入口。",
+      "original_url": "https://www.wsj.com/business/big-companies-are-starting-to-hire-again-defying-predictions-of-ai-wipeout-f4974e99",
+      "hacker_news_url": "https://news.ycombinator.com/item?id=49064256",
+      "source_domain": "www.wsj.com",
+      "score": 7,
+      "comments": 2,
+      "author": "mudil",
+      "published_at": "2026-07-27T09:40:59+08:00",
+      "ai_topics": [
+        "AI"
+      ],
+      "ai_signal": 4.0
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+
+# Large image folders
+assets/
+docs/opc-methodology/images/
+元晟企业介绍/
+发布图/
+设计理念/
+
+# OS and Temp files
+.DS_Store
+Thumbs.db
+*.log
+tmp/
+/tmp/
+
+# Environment
+.env.local
+.env.*.local
