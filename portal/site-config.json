@@ -9,7 +9,7 @@
       "dailyTasks": {
         "label": "每日任务",
         "code": "T04",
-        "path": ""
+        "path": "?table=tbl2VCW5siH1OPqo&view=vew3aJj18f"
       },
       "handoff": {
         "label": "任务交接",
@@ -19,12 +19,12 @@
       "leads": {
         "label": "询盘记录",
         "code": "T05",
-        "path": ""
+        "path": "?table=tbl5mNgu43LSxNnu&view=vew6wOKQ2G"
       },
       "eveningReview": {
         "label": "晚间复盘",
         "code": "T06",
-        "path": ""
+        "path": "?table=tbl7bSrBA6e7EGIu&view=vew2qPurQs"
       },
       "cases": {
         "label": "案例库",
